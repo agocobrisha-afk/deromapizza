@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+:root {
+  /* ---- De Roma design tokens ---- */
+  --char-950: #12100b;
+  --char-900: #17150f;
+  --char-800: #221f18;
+  --char-700: #2e2a20;
+  --char-600: #3d382a;
+
+  --cream-100: #f6efdf;
+  --cream-200: #ede2c9;
+  --cream-300: #d9caa8;
+
+  --basil-700: #2f4a34;
+  --basil-500: #4b7452;
+  --basil-300: #8fae87;
+
+  --pomodoro-600: #b23a26;
+  --pomodoro-500: #c1432b;
+  --pomodoro-400: #d65f3f;
+
+  --gold-500: #c89b3c;
+  --gold-400: #dcb663;
+  --gold-300: #ecd497;
+
+  --radius-card: 18px;
+  --radius-pill: 999px;
+}
+
+@theme inline {
+  --color-char-950: var(--char-950);
+  --color-char-900: var(--char-900);
+  --color-char-800: var(--char-800);
+  --color-char-700: var(--char-700);
+  --color-char-600: var(--char-600);
+
+  --color-cream-100: var(--cream-100);
+  --color-cream-200: var(--cream-200);
+  --color-cream-300: var(--cream-300);
+
+  --color-basil-700: var(--basil-700);
+  --color-basil-500: var(--basil-500);
+  --color-basil-300: var(--basil-300);
+
+  --color-pomodoro-600: var(--pomodoro-600);
+  --color-pomodoro-500: var(--pomodoro-500);
+  --color-pomodoro-400: var(--pomodoro-400);
+
+  --color-gold-500: var(--gold-500);
+  --color-gold-400: var(--gold-400);
+  --color-gold-300: var(--gold-300);
+
+  --font-display-ar: var(--font-el-messiri);
+  --font-body-ar: var(--font-cairo);
+  --font-display-lat: var(--font-fraunces);
+  --font-body-lat: var(--font-manrope);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--char-900);
+  color: var(--cream-100);
+}
+
+.texture-linen {
+  background-image: radial-gradient(circle at 1px 1px, rgba(246, 239, 223, 0.035) 1px, transparent 0);
+  background-size: 22px 22px;
+}
+
+.tag-price {
+  font-family: var(--font-body-lat);
+  transform: rotate(-3deg);
+}
+
+.rule-gold {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-500), transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
