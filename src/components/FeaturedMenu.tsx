@@ -1,89 +1,75 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
-import { getFeaturedItems } from "@/lib/menu-data";
+import { getFeaturedProducts } from "@/lib/queries";
 
-export default function FeaturedMenu() {
-  const items = getFeaturedItems();
+export default async function FeaturedMenu() {
+  const items = await getFeaturedProducts();
 
   return (
-    <section className="mx-auto max-w-6xl px-5 py-16 sm:py-24">
-      <div className="flex items-end justify-between">
-        <div>
-          <p
-            className="text-sm tracking-[0.2em] text-gold-500"
-            style={{ fontFamily: "var(--font-body-ar)" }}
-          >
-            الأكثر طلبًا
-          </p>
-          <h2
-            className="mt-1 text-2xl text-cream-100 sm:text-3xl"
-            style={{ fontFamily: "var(--font-display-ar)", fontWeight: 600 }}
-          >
-            أصناف تستاهل التجربة
-          </h2>
-        </div>
+    <section className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
+      <div className="mb-7 flex items-end justify-between">
+        <h2
+          className="text-2xl font-extrabold text-ink sm:text-[28px]"
+          style={{ fontFamily: "var(--font-heading)" }}
+        >
+          الأكثر طلبًا
+        </h2>
         <Link
           href="/menu"
-          className="hidden items-center gap-1.5 text-sm text-cream-300 hover:text-gold-400 transition-colors sm:flex"
-          style={{ fontFamily: "var(--font-body-ar)" }}
+          className="text-sm font-bold text-red"
+          style={{ fontFamily: "var(--font-heading)" }}
         >
-          كل المنيو
-          <ArrowLeft size={15} />
+          كل المنيو ←
         </Link>
       </div>
 
-      <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-3">
         {items.map((item) => (
           <div
             key={item.id}
-            className="group overflow-hidden rounded-[18px] bg-char-800 border border-char-700/70"
+            className="card-shadow overflow-hidden rounded-2xl bg-white sm:rounded-[24px]"
           >
-            <div className="relative h-52 w-full overflow-hidden">
-              {item.image ? (
+            <div className="relative aspect-square w-full">
+              {item.image_url ? (
                 <Image
-                  src={item.image}
-                  alt={item.name}
+                  src={item.image_url}
+                  alt={item.name_ar}
                   fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes="(max-width: 640px) 100vw, 33vw"
+                  className="object-cover"
+                  sizes="(max-width: 640px) 45vw, 30vw"
                 />
               ) : (
-                <div className="h-full w-full bg-char-700" />
+                <div className="h-full w-full bg-red-tint" />
               )}
-              <div className="absolute top-3 left-3 rounded-full bg-pomodoro-500 px-3 py-1 text-sm font-bold text-cream-100 tag-price shadow-lg">
-                {item.price} د.ل
-              </div>
+              <span className="absolute left-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-white text-lg font-extrabold text-red shadow-md">
+                +
+              </span>
             </div>
-            <div className="p-5">
+            <div className="p-3.5 sm:p-4.5">
               <h3
-                className="text-lg text-cream-100"
-                style={{ fontFamily: "var(--font-display-ar)", fontWeight: 600 }}
+                className="text-[15px] font-bold text-ink sm:text-base"
+                style={{ fontFamily: "var(--font-heading)" }}
               >
-                {item.name}
+                {item.name_ar}
               </h3>
-              {item.description && (
+              {item.description_ar && (
                 <p
-                  className="mt-1.5 text-sm leading-relaxed text-cream-300"
-                  style={{ fontFamily: "var(--font-body-ar)" }}
+                  className="mt-1 line-clamp-2 text-[12.5px] leading-relaxed text-ink-soft sm:text-[13px]"
+                  style={{ fontFamily: "var(--font-body)" }}
                 >
-                  {item.description}
+                  {item.description_ar}
                 </p>
               )}
+              <p
+                className="mt-2.5 font-extrabold text-red-dark"
+                style={{ fontFamily: "var(--font-heading)" }}
+              >
+                {item.price}{" "}
+                <span className="text-xs font-semibold text-ink-soft">د.ل</span>
+              </p>
             </div>
           </div>
         ))}
-      </div>
-
-      <div className="mt-8 flex justify-center sm:hidden">
-        <Link
-          href="/menu"
-          className="inline-flex items-center gap-1.5 rounded-full border border-gold-500/50 px-6 py-3 text-sm text-gold-300"
-          style={{ fontFamily: "var(--font-body-ar)" }}
-        >
-          كل المنيو
-          <ArrowLeft size={15} />
-        </Link>
       </div>
     </section>
   );

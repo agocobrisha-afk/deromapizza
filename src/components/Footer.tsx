@@ -1,76 +1,96 @@
+import Link from "next/link";
 import { MessageCircle, Phone, Clock, MapPin, ExternalLink } from "lucide-react";
-import { restaurant } from "@/lib/menu-data";
+import { getSiteSettings, getPublishedPages } from "@/lib/queries";
 
-export default function Footer() {
+export default async function Footer() {
+  const [s, pages] = await Promise.all([
+    getSiteSettings(),
+    getPublishedPages(),
+  ]);
+
   return (
     <footer
       id="location"
-      className="bg-char-950 border-t border-char-700/70 pt-16 pb-10"
-      style={{ fontFamily: "var(--font-body-ar)" }}
+      className="bg-dark-soft pb-8 pt-14 text-white sm:pt-16"
+      style={{ fontFamily: "var(--font-body)" }}
     >
       <div className="mx-auto max-w-6xl px-5">
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-3">
+        <div className="grid grid-cols-1 gap-9 sm:grid-cols-3">
           <div>
-            <span
-              className="text-2xl text-gold-400"
-              style={{ fontFamily: "var(--font-display-lat)" }}
+            <p
+              className="text-xl font-extrabold"
+              style={{ fontFamily: "var(--font-heading)" }}
             >
-              DE ROMA
-            </span>
-            <p className="mt-3 max-w-xs leading-relaxed text-cream-300">
-              {restaurant.tagline}
+              {s.restaurant_name}
             </p>
+            <p className="mt-2.5 max-w-xs text-sm leading-relaxed text-dark-text-dim">
+              {s.tagline}
+            </p>
+            {pages.length > 0 && (
+              <div className="mt-4 flex flex-col gap-2">
+                {pages.map((p) => (
+                  <Link
+                    key={p.id}
+                    href={`/${p.slug}`}
+                    className="text-sm text-dark-text-dim hover:text-white"
+                  >
+                    {p.title}
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
 
           <div>
-            <h4 className="mb-4 text-sm tracking-[0.15em] text-gold-500">
+            <h4 className="mb-3.5 text-[13px] font-bold text-[#ff8a7f]">
               تواصل واطلب
             </h4>
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-2.5 text-sm text-dark-text">
               <a
-                href={`https://wa.me/${restaurant.whatsapp}`}
+                href={`https://wa.me/${s.whatsapp}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2.5 text-cream-200 hover:text-gold-400 transition-colors"
+                className="flex items-center gap-2.5 hover:text-white"
               >
-                <MessageCircle size={18} /> واتساب: {restaurant.phone1}
+                <MessageCircle size={16} /> واتساب: {s.phone}
               </a>
               <a
-                href={`tel:${restaurant.phone1}`}
-                className="flex items-center gap-2.5 text-cream-200 hover:text-gold-400 transition-colors"
+                href={`tel:${s.phone}`}
+                className="flex items-center gap-2.5 hover:text-white"
               >
-                <Phone size={18} /> اتصال: {restaurant.phone1} / {restaurant.phone2}
+                <Phone size={16} /> اتصال: {s.phone}
               </a>
-              <a
-                href={restaurant.prestoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2.5 text-cream-200 hover:text-gold-400 transition-colors"
-              >
-                <ExternalLink size={18} /> اطلب عبر بريستو
-              </a>
+              {s.presto_url && (
+                <a
+                  href={s.presto_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2.5 hover:text-white"
+                >
+                  <ExternalLink size={16} /> اطلب عبر بريستو
+                </a>
+              )}
             </div>
           </div>
 
           <div>
-            <h4 className="mb-4 text-sm tracking-[0.15em] text-gold-500">
+            <h4 className="mb-3.5 text-[13px] font-bold text-[#ff8a7f]">
               الأوقات والموقع
             </h4>
-            <div className="flex flex-col gap-3">
-              <p className="flex items-center gap-2.5 text-cream-200">
-                <Clock size={18} /> {restaurant.hours}
+            <div className="flex flex-col gap-2.5 text-sm text-dark-text">
+              <p className="flex items-center gap-2.5">
+                <Clock size={16} /> {s.hours}
               </p>
-              <p className="flex items-center gap-2.5 text-cream-200">
-                <MapPin size={18} /> {restaurant.address}
+              <p className="flex items-center gap-2.5">
+                <MapPin size={16} /> {s.address}
               </p>
             </div>
           </div>
         </div>
 
-        <div className="rule-gold my-10" />
-
-        <p className="text-center text-xs text-cream-300/70">
-          © {new Date().getFullYear()} De Roma — كل الحقوق محفوظة
+        <div className="my-9 h-px bg-white/10" />
+        <p className="text-center text-xs text-dark-text-dim/70">
+          © {new Date().getFullYear()} {s.restaurant_name} — كل الحقوق محفوظة
         </p>
       </div>
     </footer>

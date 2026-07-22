@@ -1,65 +1,55 @@
 import Image from "next/image";
+import { getSiteSettings } from "@/lib/queries";
 
-export default function About() {
+export default async function About() {
+  const s = await getSiteSettings();
+
   return (
-    <section id="about" className="bg-char-950 py-16 sm:py-24">
-      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-5 lg:grid-cols-2 lg:gap-16">
-        <div className="relative order-2 lg:order-1">
-          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[22px]">
-            <Image
-              src="/images/pizza-slice-pull.jpg"
-              alt="قطعة بيتزا دي روما بالجبنة الممطوطة"
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-          </div>
-          <div className="rule-gold absolute -bottom-6 right-8 left-8" />
+    <section id="about" className="bg-dark py-16 sm:py-20">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-5 lg:grid-cols-2 lg:gap-14">
+        <div className="aspect-[16/11] w-full overflow-hidden rounded-3xl">
+          <Image
+            src="/images/pizza-slice-pull.jpg"
+            alt={s.restaurant_name}
+            width={800}
+            height={550}
+            className="h-full w-full object-cover"
+          />
         </div>
-
-        <div className="order-1 lg:order-2">
-          <p
-            className="text-sm tracking-[0.2em] text-gold-500"
-            style={{ fontFamily: "var(--font-body-ar)" }}
+        <div>
+          <span
+            className="inline-flex rounded-full bg-red/15 px-4 py-1.5 text-[13px] font-semibold text-[#ff8a7f]"
+            style={{ fontFamily: "var(--font-heading)" }}
           >
-            قصتنا
-          </p>
+            {s.about_badge}
+          </span>
           <h2
-            className="mt-2 text-3xl leading-tight text-cream-100 sm:text-4xl"
-            style={{ fontFamily: "var(--font-display-ar)", fontWeight: 600 }}
+            className="mt-4 text-balance text-2xl font-extrabold leading-snug text-white sm:text-[2rem]"
+            style={{ fontFamily: "var(--font-heading)" }}
           >
-            عجينة تُخمّر يوميًا، وجبنة موزاريلا لا تُساوم عليها
+            {s.about_title}
           </h2>
           <p
-            className="mt-5 leading-loose text-cream-300"
-            style={{ fontFamily: "var(--font-body-ar)" }}
+            className="mt-3.5 max-w-md leading-loose text-dark-text-dim"
+            style={{ fontFamily: "var(--font-body)" }}
           >
-            في دي روما، كل بيتزا تتعجن وتُخبز من جديد لطلبك — مافيش تجهيز
-            مسبق ومافيش تجميد. من المعجنات المحشوة للازانيا المشوية بالفرن،
-            نحافظ على وصفة إيطالية بسيطة وطعم صادق، وسط أجواء تحسّها فعلاً
-            رومانية من أول ما توصل لبابنا.
+            {s.about_body}
           </p>
           <div
-            className="mt-8 grid grid-cols-3 gap-6 border-t border-char-700 pt-6"
-            style={{ fontFamily: "var(--font-body-ar)" }}
+            className="mt-8 flex gap-9"
+            style={{ fontFamily: "var(--font-heading)" }}
           >
             <div>
-              <p className="text-2xl text-gold-400" style={{ fontFamily: "var(--font-display-lat)" }}>
-                100%
+              <p className="text-2xl font-extrabold text-[#ff8a7f]">100%</p>
+              <p className="mt-1 text-[13px] text-dark-text-dim">
+                عجينة طازجة
               </p>
-              <p className="mt-1 text-sm text-cream-300">عجينة طازجة يوميًا</p>
             </div>
             <div>
-              <p className="text-2xl text-gold-400" style={{ fontFamily: "var(--font-display-lat)" }}>
-                20+
+              <p className="text-2xl font-extrabold text-[#ff8a7f]">12h</p>
+              <p className="mt-1 text-[13px] text-dark-text-dim">
+                فتح يوميًا
               </p>
-              <p className="mt-1 text-sm text-cream-300">صنف بيتزا ومعجنات</p>
-            </div>
-            <div>
-              <p className="text-2xl text-gold-400" style={{ fontFamily: "var(--font-display-lat)" }}>
-                12h
-              </p>
-              <p className="mt-1 text-sm text-cream-300">فتح يوميًا للمساء</p>
             </div>
           </div>
         </div>

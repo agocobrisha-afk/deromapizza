@@ -1,76 +1,86 @@
-"use client";
-
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { MessageCircle } from "lucide-react";
-import { restaurant } from "@/lib/menu-data";
+import Image from "next/image";
+import { Flame, MessageCircle, ArrowUpLeft } from "lucide-react";
+import { getSiteSettings, getPublishedPages } from "@/lib/queries";
 
-export default function Header() {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+export default async function Header() {
+  const [settings, pages] = await Promise.all([
+    getSiteSettings(),
+    getPublishedPages(),
+  ]);
+  const navPages = pages.filter((p) => p.show_in_nav);
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-char-950/90 backdrop-blur-md border-b border-char-700/60"
-          : "bg-gradient-to-b from-char-950/70 to-transparent"
-      }`}
-    >
+    <header className="sticky top-0 z-50 border-b border-line bg-cream/90 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-        <Link href="/" className="flex items-baseline gap-2 shrink-0">
+        <Link href="/" className="flex shrink-0 items-center gap-2.5">
+          {settings.logo_url ? (
+            <span className="relative block h-10 w-10 overflow-hidden rounded-xl">
+              <Image
+                src={settings.logo_url}
+                alt={settings.restaurant_name}
+                fill
+                className="object-cover"
+              />
+            </span>
+          ) : (
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-red text-cream">
+              <Flame size={20} strokeWidth={2.4} />
+            </span>
+          )}
           <span
-            className="text-2xl font-semibold tracking-tight text-gold-400"
-            style={{ fontFamily: "var(--font-display-lat)" }}
+            className="text-xl font-extrabold text-ink"
+            style={{ fontFamily: "var(--font-heading)" }}
           >
-            DE ROMA
-          </span>
-          <span
-            className="hidden sm:inline text-sm text-cream-300"
-            style={{ fontFamily: "var(--font-display-ar)" }}
-          >
-            دي روما
+            {settings.restaurant_name}
           </span>
         </Link>
 
         <nav
-          className="hidden md:flex items-center gap-8 text-[15px] text-cream-200"
-          style={{ fontFamily: "var(--font-body-ar)" }}
+          className="hidden items-center gap-8 text-[15px] font-semibold text-ink-soft md:flex"
+          style={{ fontFamily: "var(--font-body)" }}
         >
-          <Link href="/menu" className="hover:text-gold-400 transition-colors">
+          <Link href="/menu" className="transition-colors hover:text-red">
             المنيو
           </Link>
-          <Link href="/#about" className="hover:text-gold-400 transition-colors">
-            عن المطعم
+          <Link href="/#about" className="transition-colors hover:text-red">
+            القصة
           </Link>
-          <Link href="/#location" className="hover:text-gold-400 transition-colors">
-            الموقع والأوقات
+          <Link href="/#reviews" className="transition-colors hover:text-red">
+            آراء الزبائن
           </Link>
+          {navPages.map((p) => (
+            <Link
+              key={p.id}
+              href={`/${p.slug}`}
+              className="transition-colors hover:text-red"
+            >
+              {p.title}
+            </Link>
+          ))}
         </nav>
 
         <div className="flex items-center gap-2">
           <a
-            href={`https://wa.me/${restaurant.whatsapp}`}
+            href={`https://wa.me/${settings.whatsapp}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center gap-1.5 rounded-full border border-basil-500/60 px-3.5 py-2 text-sm text-basil-300 hover:bg-basil-700/30 transition-colors"
-            style={{ fontFamily: "var(--font-body-ar)" }}
+            className="hidden h-11 w-11 items-center justify-center rounded-full border border-line text-ink-soft transition-colors hover:border-red hover:text-red sm:flex"
+            aria-label="واتساب"
           >
-            <MessageCircle size={16} strokeWidth={2} />
-            واتساب
+            <MessageCircle size={19} />
           </a>
           <Link
             href="/menu"
-            className="inline-flex items-center gap-1.5 rounded-full bg-pomodoro-500 px-4 py-2 text-sm font-semibold text-cream-100 shadow-[0_4px_18px_-4px_rgba(193,67,43,0.6)] hover:bg-pomodoro-400 transition-colors"
-            style={{ fontFamily: "var(--font-body-ar)" }}
+            className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-red px-5 py-3 text-sm font-bold text-white shadow-[0_10px_24px_-8px_rgba(230,60,47,0.55)] transition-all hover:shadow-[0_12px_28px_-6px_rgba(230,60,47,0.7)]"
+            style={{ fontFamily: "var(--font-body)" }}
           >
-            اطلب الآن
+            <span className="relative z-10">اطلب الآن</span>
+            <ArrowUpLeft
+              size={16}
+              className="relative z-10 transition-transform duration-300 group-hover:-translate-x-0.5 group-hover:-translate-y-0.5"
+            />
+            <span className="absolute inset-0 -z-0 origin-left scale-x-0 bg-red-dark transition-transform duration-300 group-hover:scale-x-100" />
           </Link>
         </div>
       </div>

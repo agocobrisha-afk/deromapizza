@@ -3,40 +3,39 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import MenuBrowser from "@/components/MenuBrowser";
-import { restaurant } from "@/lib/menu-data";
+import { getCategoriesWithProducts, getSiteSettings } from "@/lib/queries";
 
 export const metadata: Metadata = {
   title: "المنيو | De Roma",
   description: "منيو دي روما الكامل — بيتزا، معجنات، لازانيا وإضافات.",
 };
 
-export default function MenuPage() {
+export default async function MenuPage() {
+  const [categories, s] = await Promise.all([
+    getCategoriesWithProducts(),
+    getSiteSettings(),
+  ]);
+
   return (
     <>
       <Header />
-      <main className="mx-auto min-h-screen max-w-4xl px-5 pt-28 pb-24">
-        <p
-          className="text-sm tracking-[0.2em] text-gold-500"
-          style={{ fontFamily: "var(--font-body-ar)" }}
-        >
-          المنيو الكامل
-        </p>
+      <main className="mx-auto min-h-screen max-w-4xl px-5 pb-20 pt-8 sm:pt-10">
         <h1
-          className="mt-1 text-3xl text-cream-100 sm:text-4xl"
-          style={{ fontFamily: "var(--font-display-ar)", fontWeight: 600 }}
+          className="text-2xl font-extrabold text-ink sm:text-[32px]"
+          style={{ fontFamily: "var(--font-heading)" }}
         >
-          كل أصناف {restaurant.nameAr}
+          كل أصناف {s.restaurant_name}
         </h1>
         <p
-          className="mt-3 text-cream-300"
-          style={{ fontFamily: "var(--font-body-ar)" }}
+          className="mt-2 text-ink-soft"
+          style={{ fontFamily: "var(--font-body)" }}
         >
           الطلب المباشر من الموقع قريبًا — لحد ذلك اطلب مباشرة عبر واتساب أو
-          اتصال وحدد أصنافك من هنا.
+          اتصال.
         </p>
 
-        <div className="mt-8">
-          <MenuBrowser />
+        <div className="mt-6">
+          <MenuBrowser categories={categories} />
         </div>
       </main>
       <Footer />

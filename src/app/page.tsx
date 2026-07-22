@@ -1,8 +1,8 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import TavolaStrip from "@/components/TavolaStrip";
 import FeaturedMenu from "@/components/FeaturedMenu";
 import About from "@/components/About";
+import Reviews from "@/components/Reviews";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 
@@ -12,9 +12,9 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <TavolaStrip />
         <FeaturedMenu />
         <About />
+        <Reviews />
       </main>
       <Footer />
       <WhatsAppFloat />

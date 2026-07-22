@@ -1,60 +1,48 @@
 @import "tailwindcss";
 
 :root {
-  /* ---- De Roma design tokens ---- */
-  --char-950: #12100b;
-  --char-900: #17150f;
-  --char-800: #221f18;
-  --char-700: #2e2a20;
-  --char-600: #3d382a;
+  --cream: #fbfaf6;
+  --white: #ffffff;
+  --ink: #181614;
+  --ink-soft: #5b564e;
+  --ink-faint: #948e84;
 
-  --cream-100: #f6efdf;
-  --cream-200: #ede2c9;
-  --cream-300: #d9caa8;
+  --red: #e63c2f;
+  --red-dark: #c72e22;
+  --red-tint: #fdebe9;
 
-  --basil-700: #2f4a34;
-  --basil-500: #4b7452;
-  --basil-300: #8fae87;
+  --dark: #1c1a17;
+  --dark-soft: #302c27;
+  --dark-text: #d8d3ca;
+  --dark-text-dim: #9c968d;
 
-  --pomodoro-600: #b23a26;
-  --pomodoro-500: #c1432b;
-  --pomodoro-400: #d65f3f;
+  --line: rgba(24, 22, 20, 0.09);
 
-  --gold-500: #c89b3c;
-  --gold-400: #dcb663;
-  --gold-300: #ecd497;
-
-  --radius-card: 18px;
+  --radius-lg: 24px;
+  --radius-md: 16px;
   --radius-pill: 999px;
 }
 
 @theme inline {
-  --color-char-950: var(--char-950);
-  --color-char-900: var(--char-900);
-  --color-char-800: var(--char-800);
-  --color-char-700: var(--char-700);
-  --color-char-600: var(--char-600);
+  --color-cream: var(--cream);
+  --color-white: var(--white);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
 
-  --color-cream-100: var(--cream-100);
-  --color-cream-200: var(--cream-200);
-  --color-cream-300: var(--cream-300);
+  --color-red: var(--red);
+  --color-red-dark: var(--red-dark);
+  --color-red-tint: var(--red-tint);
 
-  --color-basil-700: var(--basil-700);
-  --color-basil-500: var(--basil-500);
-  --color-basil-300: var(--basil-300);
+  --color-dark: var(--dark);
+  --color-dark-soft: var(--dark-soft);
+  --color-dark-text: var(--dark-text);
+  --color-dark-text-dim: var(--dark-text-dim);
 
-  --color-pomodoro-600: var(--pomodoro-600);
-  --color-pomodoro-500: var(--pomodoro-500);
-  --color-pomodoro-400: var(--pomodoro-400);
+  --color-line: var(--line);
 
-  --color-gold-500: var(--gold-500);
-  --color-gold-400: var(--gold-400);
-  --color-gold-300: var(--gold-300);
-
-  --font-display-ar: var(--font-el-messiri);
-  --font-body-ar: var(--font-cairo);
-  --font-display-lat: var(--font-fraunces);
-  --font-body-lat: var(--font-manrope);
+  --font-heading: var(--font-jakarta);
+  --font-body: var(--font-cairo);
 }
 
 html {
@@ -62,23 +50,18 @@ html {
 }
 
 body {
-  background: var(--char-900);
-  color: var(--cream-100);
+  background: var(--cream);
+  color: var(--ink);
 }
 
-.texture-linen {
-  background-image: radial-gradient(circle at 1px 1px, rgba(246, 239, 223, 0.035) 1px, transparent 0);
-  background-size: 22px 22px;
+.card-shadow {
+  box-shadow:
+    0 2px 4px rgba(24, 22, 20, 0.04),
+    0 14px 34px -14px rgba(24, 22, 20, 0.14);
 }
 
-.tag-price {
-  font-family: var(--font-body-lat);
-  transform: rotate(-3deg);
-}
-
-.rule-gold {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold-500), transparent);
+.text-balance {
+  text-wrap: balance;
 }
 
 @media (prefers-reduced-motion: reduce) {
