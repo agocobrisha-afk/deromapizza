@@ -50,9 +50,9 @@ button, input { font: inherit; }
 .pizza-ref-shell {
   min-height: 100vh;
   background:
-    linear-gradient(rgba(255,255,255,.97), rgba(255,255,255,.97)),
-    repeating-linear-gradient(0deg, rgba(160,145,135,.11) 0 1px, transparent 1px 40px),
-    repeating-linear-gradient(90deg, rgba(160,145,135,.09) 0 1px, transparent 1px 40px);
+    linear-gradient(rgba(255,255,255,.965), rgba(255,255,255,.965)),
+    repeating-linear-gradient(0deg, rgba(160,145,135,.12) 0 1px, transparent 1px 38px),
+    repeating-linear-gradient(90deg, rgba(160,145,135,.09) 0 1px, transparent 1px 38px);
 }
 
 .pizza-ref-container {
@@ -91,7 +91,7 @@ button, input { font: inherit; }
   top: 0;
   z-index: 60;
   border-bottom: 1px solid #eee7e3;
-  background: rgba(255,255,255,.96);
+  background: rgba(255,255,255,.965);
   backdrop-filter: blur(14px);
 }
 .pizza-ref-header-inner {
@@ -141,46 +141,69 @@ button, input { font: inherit; }
 .pizza-ref-hero {
   position: relative;
   overflow: hidden;
-  padding: 38px 0 26px;
-  min-height: 560px;
+  min-height: 610px;
+  padding: 34px 0 22px;
+}
+.pizza-ref-hero::before,
+.pizza-ref-hero::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.pizza-ref-hero::before {
+  width: 520px;
+  height: 520px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -48%);
+  background: radial-gradient(circle, rgba(216,17,47,.09), rgba(216,17,47,0) 68%);
+}
+.pizza-ref-hero::after {
+  width: 170px;
+  height: 170px;
+  right: 4%;
+  top: 4%;
+  background: radial-gradient(circle at 35% 35%, rgba(255,255,255,.95), rgba(216,17,47,.06));
+  filter: blur(2px);
 }
 .pizza-ref-hero-inner {
   position: relative;
-  min-height: 520px;
+  min-height: 550px;
   display: grid;
-  grid-template-columns: 1fr 1.4fr 1fr;
+  grid-template-columns: .9fr 1.45fr .9fr;
   align-items: center;
-  gap: 18px;
+  gap: 16px;
 }
 .pizza-ref-hero-copy {
   position: relative;
-  z-index: 5;
+  z-index: 6;
   text-align: center;
 }
 .pizza-ref-script-small {
   display: block;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
   color: #3d3d3d;
-  font-size: 24px;
+  font-size: 25px;
   font-weight: 700;
 }
 .pizza-ref-hero-copy h1 {
   margin: 0;
   color: var(--red);
-  font-size: clamp(3.5rem, 6vw, 6.5rem);
-  line-height: .93;
+  font-size: clamp(3.8rem, 6vw, 6.8rem);
+  line-height: .92;
   font-weight: 900;
   letter-spacing: -.045em;
 }
 .pizza-ref-hero-copy p {
-  max-width: 410px;
-  margin: 20px auto 0;
+  max-width: 380px;
+  margin: 18px auto 0;
   color: var(--ink-soft);
   font-size: 15px;
   line-height: 1.9;
 }
 .pizza-ref-hero-actions {
-  margin-top: 24px;
+  margin-top: 22px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -196,6 +219,7 @@ button, input { font: inherit; }
   background: var(--red);
   color: #fff;
   font-weight: 900;
+  box-shadow: 0 14px 28px -16px rgba(216,17,47,.8);
 }
 .pizza-ref-round-arrow {
   width: 46px;
@@ -211,18 +235,20 @@ button, input { font: inherit; }
 
 .pizza-ref-hero-centerpiece {
   position: relative;
-  min-height: 500px;
+  z-index: 4;
+  min-height: 530px;
   display: grid;
   place-items: center;
 }
 .pizza-ref-pizza-disc {
   position: relative;
-  width: min(560px, 48vw);
+  width: min(575px, 48vw);
   aspect-ratio: 1;
   border-radius: 50%;
   overflow: hidden;
-  box-shadow: 0 35px 70px -35px rgba(0,0,0,.42);
+  box-shadow: 0 42px 80px -36px rgba(0,0,0,.5);
   border: 12px solid #fff;
+  transform: rotate(-2deg);
 }
 .pizza-ref-pizza-disc::after {
   content: "";
@@ -238,22 +264,31 @@ button, input { font: inherit; }
   border-radius: 18px 18px 26px 26px;
   display: grid;
   place-items: center;
-  background: linear-gradient(180deg, #3d231f, #140f0e);
+  background:
+    linear-gradient(90deg, transparent 48%, rgba(255,255,255,.18) 49% 52%, transparent 53%),
+    linear-gradient(180deg, #502b25, #1b1110);
   color: #fff;
   font-size: 15px;
   font-weight: 900;
   box-shadow: 0 22px 36px -22px rgba(0,0,0,.6);
+  border: 4px solid rgba(255,255,255,.85);
+}
+.pizza-ref-cup span,
+.pizza-ref-subscribe-cup span {
+  transform: rotate(-90deg);
+  letter-spacing: .16em;
+  font-size: 11px;
 }
 .pizza-ref-cup {
   position: absolute;
-  right: 5%;
-  bottom: 10%;
-  transform: rotate(-5deg);
+  right: 3%;
+  bottom: 9%;
+  transform: rotate(-6deg);
 }
 
 .pizza-ref-floating {
   position: relative;
-  min-height: 430px;
+  min-height: 450px;
 }
 .pizza-ref-floating-card {
   position: absolute;
@@ -263,27 +298,28 @@ button, input { font: inherit; }
   box-shadow: 0 24px 60px -35px rgba(0,0,0,.5);
 }
 .pizza-ref-floating-pizza {
-  width: 210px;
-  height: 210px;
-  top: 30px;
+  width: 215px;
+  height: 215px;
+  top: 26px;
 }
 .pizza-ref-floating-small {
   width: 118px;
   height: 118px;
   bottom: 42px;
 }
-.pizza-ref-floating-left .pizza-ref-floating-pizza { left: -56px; }
-.pizza-ref-floating-left .pizza-ref-floating-small { left: 8px; }
-.pizza-ref-floating-right .pizza-ref-floating-pizza { right: -56px; }
+.pizza-ref-floating-left .pizza-ref-floating-pizza { left: -76px; transform: rotate(-8deg); }
+.pizza-ref-floating-left .pizza-ref-floating-small { left: 2px; transform: rotate(8deg); }
+.pizza-ref-floating-right .pizza-ref-floating-pizza { right: -76px; transform: rotate(8deg); }
 .pizza-ref-floating-fries {
   width: 124px;
   height: 124px;
-  right: 8px;
+  right: 6px;
   bottom: 46px;
   display: grid;
   place-items: center;
   border-radius: 26px;
-  background: linear-gradient(145deg, #efbf58, #d99121);
+  background:
+    repeating-linear-gradient(100deg, #f8d35f 0 12px, #e8a625 12px 20px);
   color: #7a1d13;
   font-weight: 900;
   transform: rotate(7deg);
@@ -292,6 +328,7 @@ button, input { font: inherit; }
 .pizza-ref-category-band {
   background: var(--red);
   color: #fff;
+  box-shadow: 0 22px 45px -32px rgba(216,17,47,.8);
 }
 .pizza-ref-category-grid {
   min-height: 126px;
@@ -311,7 +348,32 @@ button, input { font: inherit; }
 
 .pizza-ref-deals-section {
   position: relative;
+  overflow: hidden;
   padding: 84px 0 96px;
+}
+.pizza-ref-decor {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: .45;
+}
+.pizza-ref-decor-sauce {
+  width: 180px;
+  height: 180px;
+  left: -60px;
+  top: 90px;
+  background: radial-gradient(circle at 40% 40%, #e84c3d 0 35%, #b90f22 36% 58%, transparent 59%);
+}
+.pizza-ref-decor-basil {
+  width: 210px;
+  height: 120px;
+  right: -70px;
+  top: 70px;
+  background:
+    radial-gradient(ellipse at 30% 50%, #4c8737 0 32%, transparent 34%),
+    radial-gradient(ellipse at 65% 35%, #6ea24e 0 30%, transparent 32%),
+    radial-gradient(ellipse at 72% 72%, #356e2a 0 28%, transparent 30%);
+  transform: rotate(-14deg);
 }
 .pizza-ref-deals-heading {
   text-align: center;
@@ -342,11 +404,16 @@ button, input { font: inherit; }
 .pizza-ref-jumbo-deal {
   position: relative;
   overflow: hidden;
-  border-radius: 16px;
+  border-radius: 12px;
   background: #ddd;
+  box-shadow: 0 18px 42px -28px rgba(0,0,0,.38);
 }
 .pizza-ref-deal-card { min-height: 230px; }
 .pizza-ref-jumbo-deal { min-height: 474px; }
+.pizza-ref-deal-card img,
+.pizza-ref-jumbo-deal img { transition: transform .45s ease; }
+.pizza-ref-deal-card:hover img,
+.pizza-ref-jumbo-deal:hover img { transform: scale(1.04); }
 .pizza-ref-deal-shade {
   position: absolute;
   inset: 0;
@@ -396,17 +463,17 @@ button, input { font: inherit; }
 }
 
 .pizza-ref-subscribe {
-  padding: 42px 0;
+  padding: 38px 0;
   background: #fff;
   border-top: 1px solid #eee7e3;
   border-bottom: 1px solid #eee7e3;
 }
 .pizza-ref-subscribe-inner {
-  min-height: 300px;
+  min-height: 285px;
   display: grid;
   grid-template-columns: .85fr 1.15fr;
   align-items: center;
-  gap: 30px;
+  gap: 28px;
 }
 .pizza-ref-subscribe-copy span {
   color: #343434;
@@ -430,6 +497,7 @@ button, input { font: inherit; }
   border: 1px solid #ded6d2;
   border-radius: 999px;
   overflow: hidden;
+  background: #fff;
 }
 .pizza-ref-subscribe-form input {
   flex: 1;
@@ -448,33 +516,36 @@ button, input { font: inherit; }
 }
 .pizza-ref-subscribe-art {
   position: relative;
-  min-height: 280px;
+  min-height: 270px;
 }
 .pizza-ref-subscribe-pizza {
   position: absolute;
-  right: 10%;
-  top: 10px;
-  width: 430px;
+  right: 8%;
+  top: 4px;
+  width: 440px;
   height: 250px;
   overflow: hidden;
-  border-radius: 50% 50% 24px 24px;
+  border-radius: 54% 46% 28px 34px;
+  box-shadow: 0 26px 60px -34px rgba(0,0,0,.42);
 }
 .pizza-ref-subscribe-cup {
   position: absolute;
-  left: 18%;
-  top: 60px;
+  left: 16%;
+  top: 58px;
 }
 .pizza-ref-tomato {
   position: absolute;
-  right: 2%;
-  bottom: 6px;
+  right: 1%;
+  bottom: 0;
   color: #e31b2f;
   font-size: 82px;
   line-height: 1;
 }
 
 .pizza-ref-app {
-  background: var(--red);
+  background:
+    radial-gradient(circle at 78% 20%, rgba(255,255,255,.14), transparent 25%),
+    var(--red);
   color: #fff;
   padding: 54px 0 0;
 }
@@ -509,20 +580,42 @@ button, input { font: inherit; }
 .pizza-ref-phone-screen {
   height: 100%;
   border-radius: 30px 30px 0 0;
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
   background: linear-gradient(180deg, #fff, #f8ecef);
+  overflow: hidden;
 }
 .pizza-ref-phone-logo {
-  width: 112px;
-  height: 112px;
+  width: 96px;
+  height: 96px;
   border-radius: 50%;
   display: grid;
   place-items: center;
   background: var(--red);
   color: #fff;
-  font-size: 34px;
+  font-size: 30px;
   font-weight: 900;
+}
+.pizza-ref-phone-preview {
+  width: calc(100% - 26px);
+  padding: 10px;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 16px 40px -28px rgba(0,0,0,.5);
+  color: var(--red);
+  text-align: center;
+  font-weight: 900;
+  font-size: 12px;
+}
+.pizza-ref-phone-preview-img {
+  position: relative;
+  height: 120px;
+  border-radius: 13px;
+  overflow: hidden;
+  margin-bottom: 8px;
 }
 .pizza-ref-app-copy {
   align-self: center;
@@ -571,9 +664,7 @@ button, input { font: inherit; }
   gap: 34px;
 }
 .pizza-ref-footer h3,
-.pizza-ref-footer h4 {
-  margin: 0;
-}
+.pizza-ref-footer h4 { margin: 0; }
 .pizza-ref-footer h3 { font-size: 28px; }
 .pizza-ref-footer h4 { color: #ff8796; }
 .pizza-ref-footer p,
@@ -594,26 +685,20 @@ button, input { font: inherit; }
 }
 
 @media (max-width: 980px) {
-  .pizza-ref-header-inner {
-    grid-template-columns: 1fr auto;
-  }
+  .pizza-ref-header-inner { grid-template-columns: 1fr auto; }
   .pizza-ref-nav-start { display: none; }
   .pizza-ref-nav-end { justify-content: flex-start; }
-  .pizza-ref-hero-inner {
-    grid-template-columns: 1fr;
-    min-height: auto;
-  }
+  .pizza-ref-hero { min-height: auto; padding-top: 20px; }
+  .pizza-ref-hero-inner { grid-template-columns: 1fr; min-height: auto; }
   .pizza-ref-floating { display: none; }
-  .pizza-ref-hero-copy { order: 2; }
-  .pizza-ref-hero-centerpiece { order: 1; min-height: 390px; }
+  .pizza-ref-hero-copy { order: 2; margin-top: -12px; }
+  .pizza-ref-hero-centerpiece { order: 1; min-height: 420px; }
   .pizza-ref-pizza-disc { width: min(520px, 84vw); }
-  .pizza-ref-cup { right: 12%; }
+  .pizza-ref-cup { right: 11%; }
   .pizza-ref-deals-layout { grid-template-columns: 1fr; }
   .pizza-ref-jumbo-deal { min-height: 420px; }
   .pizza-ref-subscribe-inner,
-  .pizza-ref-app-inner {
-    grid-template-columns: 1fr;
-  }
+  .pizza-ref-app-inner { grid-template-columns: 1fr; }
   .pizza-ref-subscribe-art { order: -1; }
   .pizza-ref-app-copy { text-align: center; padding-bottom: 42px; }
   .pizza-ref-app-copy p { margin-inline: auto; }
@@ -629,32 +714,35 @@ button, input { font: inherit; }
   .pizza-ref-logo-mark { width: 46px; height: 46px; font-size: 15px; }
   .pizza-ref-nav-end { gap: 13px; font-size: 11px; }
   .pizza-ref-nav-end a:not(.pizza-ref-cart-link):nth-child(-n+2) { display: none; }
-  .pizza-ref-hero { padding-top: 16px; }
-  .pizza-ref-hero-centerpiece { min-height: 340px; }
+  .pizza-ref-hero { padding-top: 12px; }
+  .pizza-ref-hero-centerpiece { min-height: 330px; }
   .pizza-ref-pizza-disc { width: 88vw; border-width: 8px; }
-  .pizza-ref-cup { width: 72px; height: 120px; right: 6%; bottom: 5%; }
+  .pizza-ref-cup { width: 68px; height: 112px; right: 5%; bottom: 4%; }
   .pizza-ref-script-small { font-size: 20px; }
-  .pizza-ref-hero-copy h1 { font-size: 3.6rem; }
+  .pizza-ref-hero-copy h1 { font-size: 3.45rem; }
   .pizza-ref-hero-copy p { font-size: 14px; }
   .pizza-ref-category-grid { grid-template-columns: repeat(5, minmax(72px, 1fr)); overflow-x: auto; }
   .pizza-ref-category-item { min-width: 84px; padding: 18px 8px; font-size: 12px; }
-  .pizza-ref-deals-section { padding: 62px 0 70px; }
+  .pizza-ref-deals-section { padding: 58px 0 68px; }
   .pizza-ref-deals-small-grid { grid-template-columns: 1fr; }
-  .pizza-ref-deal-card { min-height: 260px; }
-  .pizza-ref-jumbo-deal { min-height: 340px; }
+  .pizza-ref-deal-card { min-height: 250px; }
+  .pizza-ref-jumbo-deal { min-height: 330px; }
+  .pizza-ref-decor { display: none; }
+  .pizza-ref-subscribe { padding: 34px 0; }
   .pizza-ref-subscribe-inner { min-height: auto; }
-  .pizza-ref-subscribe-art { min-height: 230px; }
-  .pizza-ref-subscribe-pizza { width: 300px; height: 190px; right: 6%; }
-  .pizza-ref-subscribe-cup { left: 3%; top: 55px; width: 66px; height: 112px; }
-  .pizza-ref-tomato { font-size: 58px; }
+  .pizza-ref-subscribe-art { min-height: 220px; }
+  .pizza-ref-subscribe-pizza { width: 300px; height: 185px; right: 5%; }
+  .pizza-ref-subscribe-cup { left: 2%; top: 52px; width: 62px; height: 106px; }
+  .pizza-ref-tomato { font-size: 56px; }
   .pizza-ref-subscribe-copy span,
   .pizza-ref-subscribe-copy h2 { font-size: 26px; }
   .pizza-ref-subscribe-form { flex-direction: column; border-radius: 18px; }
   .pizza-ref-subscribe-form input { min-height: 48px; }
   .pizza-ref-subscribe-form button { min-height: 46px; }
-  .pizza-ref-app { padding-top: 42px; }
-  .pizza-ref-app-inner { gap: 28px; }
-  .pizza-ref-phone { width: 210px; height: 390px; }
-  .pizza-ref-app-copy h2 { font-size: 3.2rem; }
+  .pizza-ref-app { padding-top: 40px; }
+  .pizza-ref-app-inner { gap: 26px; }
+  .pizza-ref-phone { width: 205px; height: 382px; }
+  .pizza-ref-phone-preview-img { height: 94px; }
+  .pizza-ref-app-copy h2 { font-size: 3.1rem; }
   .pizza-ref-footer-grid { grid-template-columns: 1fr; }
 }
