@@ -77,7 +77,7 @@ create policy "public insert reviews" on reviews for insert with check (true);
 
 -- تعديل من لوحة التحكم (لازم تسجيل دخول Supabase Auth)
 drop policy if exists "auth manage settings" on site_settings;
-create policy "auth manage settings" on site_settings for update using (auth.role() = 'authenticated');
+create policy "auth manage settings" on site_settings for all using (auth.role() = 'authenticated');
 
 drop policy if exists "auth manage pages" on pages;
 create policy "auth manage pages" on pages for all using (auth.role() = 'authenticated');

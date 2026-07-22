@@ -68,7 +68,7 @@ create policy "public read pages" on pages for select using (is_published = true
 create policy "public read approved reviews" on reviews for select using (is_approved = true);
 create policy "public insert reviews" on reviews for insert with check (true);
 
-create policy "auth manage settings" on site_settings for update using (auth.role() = 'authenticated');
+create policy "auth manage settings" on site_settings for all using (auth.role() = 'authenticated');
 create policy "auth manage pages" on pages for all using (auth.role() = 'authenticated');
 create policy "auth manage reviews" on reviews for all using (auth.role() = 'authenticated');
 

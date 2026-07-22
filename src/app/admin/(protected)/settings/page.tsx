@@ -34,6 +34,7 @@ export default function AdminSettingsPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
   const [uploadingLogo, setUploadingLogo] = useState(false);
   const [uploadingHero, setUploadingHero] = useState(false);
 
@@ -75,10 +76,15 @@ export default function AdminSettingsPage() {
 
   async function handleSave() {
     setSaving(true);
+    setSaveError(null);
     const payload: Record<string, unknown> = { ...settings, id: 1 };
     const { error } = await supabase.from("site_settings").upsert(payload);
     setSaving(false);
-    if (!error) setSaved(true);
+    if (error) {
+      setSaveError(error.message);
+    } else {
+      setSaved(true);
+    }
   }
 
   if (loading) return <p className="text-ink-soft">جارٍ التحميل...</p>;
@@ -192,6 +198,9 @@ export default function AdminSettingsPage() {
       >
         {saving ? "جارٍ الحفظ..." : saved ? "تم الحفظ ✓" : "حفظ التغييرات"}
       </button>
+      {saveError && (
+        <p className="mt-3 text-sm text-red-dark">خطأ: {saveError}</p>
+      )}
     </div>
   );
 }
