@@ -40,6 +40,7 @@ export default async function PizzaHubLanding() {
 
   const hero = products[0];
   const deals = products.slice(0, 4);
+  const heroImage = hero?.image_url || "/images/table-two-pizzas.jpg";
 
   return (
     <div className="pizza-ref-shell">
@@ -85,7 +86,7 @@ export default async function PizzaHubLanding() {
         <section id="home" className="pizza-ref-hero">
           <div className="pizza-ref-container pizza-ref-hero-inner">
             <div className="pizza-ref-floating pizza-ref-floating-left" aria-hidden="true">
-              <div className="pizza-ref-floating-card pizza-ref-floating-pizza">
+              <div className="pizza-ref-floating-card pizza-ref-floating-pizza pizza-ref-floating-pizza-left">
                 <Image src={deals[1]?.image_url || fallbackImages[1]} alt="بيتزا جانبية" fill className="object-cover" sizes="220px" />
               </div>
               <div className="pizza-ref-floating-card pizza-ref-floating-small">
@@ -105,13 +106,13 @@ export default async function PizzaHubLanding() {
 
             <div className="pizza-ref-hero-centerpiece">
               <div className="pizza-ref-pizza-disc">
-                <Image src={hero?.image_url || "/images/table-two-pizzas.jpg"} alt={hero?.name_ar || settings.restaurant_name} fill priority className="object-cover" sizes="(max-width: 900px) 88vw, 560px" />
+                <Image src={heroImage} alt={hero?.name_ar || settings.restaurant_name} fill priority className="object-cover" sizes="(max-width: 900px) 88vw, 560px" />
               </div>
-              <div className="pizza-ref-cup">COLA</div>
+              <div className="pizza-ref-cup"><span>COLA</span></div>
             </div>
 
             <div className="pizza-ref-floating pizza-ref-floating-right" aria-hidden="true">
-              <div className="pizza-ref-floating-card pizza-ref-floating-pizza">
+              <div className="pizza-ref-floating-card pizza-ref-floating-pizza pizza-ref-floating-pizza-right">
                 <Image src={deals[0]?.image_url || fallbackImages[0]} alt="بيتزا جانبية" fill className="object-cover" sizes="220px" />
               </div>
               <div className="pizza-ref-floating-card pizza-ref-floating-fries"><span>FRIES</span></div>
@@ -131,6 +132,8 @@ export default async function PizzaHubLanding() {
         </section>
 
         <section id="deals" className="pizza-ref-deals-section">
+          <div className="pizza-ref-decor pizza-ref-decor-sauce" aria-hidden="true" />
+          <div className="pizza-ref-decor pizza-ref-decor-basil" aria-hidden="true" />
           <div className="pizza-ref-container">
             <div className="pizza-ref-deals-heading">
               <span>De Roma</span>
@@ -154,7 +157,7 @@ export default async function PizzaHubLanding() {
               </div>
 
               <article className="pizza-ref-jumbo-deal">
-                <Image src={deals[0]?.image_url || "/images/table-two-pizzas.jpg"} alt={deals[0]?.name_ar || "عرض بيتزا"} fill className="object-cover" sizes="(max-width: 900px) 100vw, 540px" />
+                <Image src={deals[0]?.image_url || heroImage} alt={deals[0]?.name_ar || "عرض بيتزا"} fill className="object-cover" sizes="(max-width: 900px) 100vw, 540px" />
                 <div className="pizza-ref-deal-shade pizza-ref-deal-shade-strong" />
                 <div className="pizza-ref-jumbo-copy">
                   <span>Jumbo Deal</span>
@@ -180,9 +183,9 @@ export default async function PizzaHubLanding() {
             </div>
             <div className="pizza-ref-subscribe-art" aria-hidden="true">
               <div className="pizza-ref-subscribe-pizza">
-                <Image src="/images/pizza-slice-pull.jpg" alt="بيتزا ومشروب" fill className="object-cover" sizes="420px" />
+                <Image src={heroImage} alt="بيتزا ومشروب" fill className="object-cover" sizes="420px" />
               </div>
-              <div className="pizza-ref-subscribe-cup">COLA</div>
+              <div className="pizza-ref-subscribe-cup"><span>COLA</span></div>
               <div className="pizza-ref-tomato">●</div>
             </div>
           </div>
@@ -194,6 +197,12 @@ export default async function PizzaHubLanding() {
               <div className="pizza-ref-phone-notch" />
               <div className="pizza-ref-phone-screen">
                 <div className="pizza-ref-phone-logo">DR</div>
+                <div className="pizza-ref-phone-preview">
+                  <div className="pizza-ref-phone-preview-img">
+                    <Image src={heroImage} alt="معاينة التطبيق" fill className="object-cover" sizes="180px" />
+                  </div>
+                  <span>{settings.restaurant_name}</span>
+                </div>
               </div>
             </div>
 
