@@ -1,7 +1,13 @@
 import Link from "next/link";
-import { Settings, FileText, Star, UtensilsCrossed } from "lucide-react";
+import { Settings, FileText, Star, UtensilsCrossed, Palette } from "lucide-react";
 
 const cards = [
+  {
+    href: "/admin/theme",
+    title: "معرض الثيمات",
+    desc: "اختر من 10 هويات بصرية مختلفة — تتغير فورًا بكل الموقع",
+    icon: Palette,
+  },
   {
     href: "/admin/settings",
     title: "إعدادات الموقع",

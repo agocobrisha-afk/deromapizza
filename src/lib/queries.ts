@@ -81,7 +81,8 @@ export async function getFeaturedProducts(): Promise<Product[]> {
   const cats = await getCategoriesWithProducts();
   const all = cats.flatMap((c) => c.products);
   const featured = all.filter((p) => p.is_featured);
-  return (featured.length > 0 ? featured : all).slice(0, 3);
+  const pool = featured.length > 0 ? featured : all;
+  return pool.length >= 5 ? pool.slice(0, 6) : all.slice(0, 6);
 }
 
 export async function getPublishedPages(): Promise<SitePage[]> {

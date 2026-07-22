@@ -1,5 +1,6 @@
 export type SiteSettings = {
   id: number;
+  theme_id: string;
   restaurant_name: string;
   logo_url: string | null;
   hero_image_url: string | null;

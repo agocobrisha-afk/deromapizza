@@ -2,6 +2,7 @@ import { SiteSettings } from "./types";
 
 export const defaultSettings: SiteSettings = {
   id: 1,
+  theme_id: "bold-red",
   restaurant_name: "De Roma",
   logo_url: null,
   hero_image_url: "/images/table-two-pizzas.jpg",

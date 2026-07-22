@@ -6,6 +6,7 @@
 -- إعدادات الموقع (صف واحد يحكم كل الموقع)
 create table if not exists site_settings (
   id int primary key default 1,
+  theme_id text default 'bold-red',
   restaurant_name text default 'De Roma',
   logo_url text,
   hero_image_url text,
@@ -27,6 +28,7 @@ create table if not exists site_settings (
   cta_secondary_label text default 'اطلب واتساب',
   constraint single_row check (id = 1)
 );
+alter table site_settings add column if not exists theme_id text default 'bold-red';
 insert into site_settings (id) values (1) on conflict (id) do nothing;
 
 -- صفحات فرعية ديناميكية (من نحن، الوظائف...)

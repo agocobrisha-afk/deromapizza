@@ -42,7 +42,7 @@ export default async function Footer() {
           </div>
 
           <div>
-            <h4 className="mb-3.5 text-[13px] font-bold text-[#ff8a7f]">
+            <h4 className="mb-3.5 text-[13px] font-bold text-[var(--red)]">
               تواصل واطلب
             </h4>
             <div className="flex flex-col gap-2.5 text-sm text-dark-text">
@@ -74,7 +74,7 @@ export default async function Footer() {
           </div>
 
           <div>
-            <h4 className="mb-3.5 text-[13px] font-bold text-[#ff8a7f]">
+            <h4 className="mb-3.5 text-[13px] font-bold text-[var(--red)]">
               الأوقات والموقع
             </h4>
             <div className="flex flex-col gap-2.5 text-sm text-dark-text">

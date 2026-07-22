@@ -18,7 +18,7 @@ export default async function About() {
         </div>
         <div>
           <span
-            className="inline-flex rounded-full bg-red/15 px-4 py-1.5 text-[13px] font-semibold text-[#ff8a7f]"
+            className="inline-flex rounded-full bg-red/15 px-4 py-1.5 text-[13px] font-semibold text-[var(--red)]"
             style={{ fontFamily: "var(--font-heading)" }}
           >
             {s.about_badge}
@@ -40,13 +40,13 @@ export default async function About() {
             style={{ fontFamily: "var(--font-heading)" }}
           >
             <div>
-              <p className="text-2xl font-extrabold text-[#ff8a7f]">100%</p>
+              <p className="text-2xl font-extrabold text-[var(--red)]">100%</p>
               <p className="mt-1 text-[13px] text-dark-text-dim">
                 عجينة طازجة
               </p>
             </div>
             <div>
-              <p className="text-2xl font-extrabold text-[#ff8a7f]">12h</p>
+              <p className="text-2xl font-extrabold text-[var(--red)]">12h</p>
               <p className="mt-1 text-[13px] text-dark-text-dim">
                 فتح يوميًا
               </p>

@@ -9,6 +9,7 @@ import {
   FileText,
   Star,
   UtensilsCrossed,
+  Palette,
   LogOut,
 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
@@ -16,6 +17,7 @@ import type { Session } from "@supabase/supabase-js";
 
 const navItems = [
   { href: "/admin", label: "الرئيسية", icon: LayoutDashboard },
+  { href: "/admin/theme", label: "الثيمات", icon: Palette },
   { href: "/admin/settings", label: "إعدادات الموقع", icon: Settings },
   { href: "/admin/menu", label: "المنيو", icon: UtensilsCrossed },
   { href: "/admin/pages", label: "الصفحات", icon: FileText },
