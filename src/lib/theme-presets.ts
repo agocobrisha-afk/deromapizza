@@ -47,7 +47,7 @@ export const themePresets: ThemePreset[] = [
       dark: "#08080A", darkSoft: "#171719",
     },
     fontPairing: "elegant",
-    heroStyle: "split-modern",
+    heroStyle: "cinematic-full",
     cardStyle: "list-editorial",
   },
   {
@@ -73,7 +73,7 @@ export const themePresets: ThemePreset[] = [
       dark: "#0C1420", darkSoft: "#18243A",
     },
     fontPairing: "elegant",
-    heroStyle: "minimal-centered",
+    heroStyle: "cinematic-full",
     cardStyle: "grid",
   },
   {
@@ -99,7 +99,7 @@ export const themePresets: ThemePreset[] = [
       dark: "#241A10", darkSoft: "#3A2B1B",
     },
     fontPairing: "elegant",
-    heroStyle: "split-modern",
+    heroStyle: "cinematic-full",
     cardStyle: "list-editorial",
   },
   {
@@ -138,7 +138,7 @@ export const themePresets: ThemePreset[] = [
       dark: "#181022", darkSoft: "#281C36",
     },
     fontPairing: "elegant",
-    heroStyle: "split-modern",
+    heroStyle: "cinematic-full",
     cardStyle: "bento",
   },
   {
@@ -151,7 +151,7 @@ export const themePresets: ThemePreset[] = [
       dark: "#161616", darkSoft: "#262626",
     },
     fontPairing: "minimal",
-    heroStyle: "minimal-centered",
+    heroStyle: "cinematic-full",
     cardStyle: "grid",
   },
 ];

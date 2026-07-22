@@ -4,6 +4,9 @@ import "./globals.css";
 import { getSiteSettings } from "@/lib/queries";
 import { getThemePreset } from "@/lib/theme-presets";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 const cairo = Cairo({
   subsets: ["arabic", "latin"],
   variable: "--font-cairo",
