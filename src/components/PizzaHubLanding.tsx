@@ -23,6 +23,24 @@ const showcaseImages = [
   "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1400&q=85",
 ];
 
+const testimonials = [
+  {
+    name: "سارة محمد",
+    role: "عميلة دائمة",
+    quote: "العجينة خفيفة والطعم ثابت في كل مرة. الطلب يوصل مرتب وساخن فعلًا.",
+  },
+  {
+    name: "أحمد الورفلي",
+    role: "تقييم Google",
+    quote: "من أفضل تجارب البيتزا في طرابلس. المكونات واضحة والخدمة سريعة ومحترمة.",
+  },
+  {
+    name: "مريم علي",
+    role: "طلب عائلي",
+    quote: "التغليف ممتاز والبيتزا وصلت كأنها طالعة توًا من الفرن. تجربة تستحق التكرار.",
+  },
+];
+
 export default async function PizzaHubLanding() {
   const [settings, products] = await Promise.all([
     getSiteSettings(),
@@ -116,7 +134,7 @@ export default async function PizzaHubLanding() {
                   <div className="roma-product-body">
                     <h3>{product.name_ar}</h3>
                     <p>{product.description_ar || "مكونات مختارة بعناية وطعم غني في كل لقمة."}</p>
-                    <div><strong>{product.price ? `${product.price} د.ل` : "السعر عند الطلب"}</strong><Link href="/menu">أضف للطلب</Link></div>
+                    <div><strong>{product.price ? `${product.price} د.ل` : "السعر عند الطلب"}</strong><Link href="/menu" className="roma-card-cta">أضف للطلب <ArrowLeft size={14} /></Link></div>
                   </div>
                 </article>
               ))}
@@ -127,6 +145,8 @@ export default async function PizzaHubLanding() {
         <section id="story" className="roma-story">
           <div className="roma-container roma-story-grid">
             <div className="roma-story-visual">
+              <div className="roma-story-number roma-story-number-one">01</div>
+              <div className="roma-story-number roma-story-number-two">03</div>
               <div className="roma-story-image roma-story-image-main" style={{ backgroundImage: `url(${imageAt(2)})` }} />
               <div className="roma-story-image roma-story-image-small" style={{ backgroundImage: `url(${imageAt(4)})` }} />
               <div className="roma-story-seal">من الفرن<br />إلى بابك</div>
@@ -150,10 +170,30 @@ export default async function PizzaHubLanding() {
             <div className="roma-section-head roma-section-head-centered"><div><span>من أجوائنا</span><h2>كل صورة تحكي طعمًا</h2></div></div>
             <div className="roma-gallery-grid">
               <div className="roma-gallery-item roma-gallery-wide" style={{ backgroundImage: `url(${imageAt(0)})` }} />
-              <div className="roma-gallery-item" style={{ backgroundImage: `url(${imageAt(1)})` }} />
+              <div className="roma-gallery-item roma-gallery-tall" style={{ backgroundImage: `url(${imageAt(1)})` }} />
               <div className="roma-gallery-item" style={{ backgroundImage: `url(${imageAt(2)})` }} />
               <div className="roma-gallery-item" style={{ backgroundImage: `url(${imageAt(3)})` }} />
               <div className="roma-gallery-item roma-gallery-tall" style={{ backgroundImage: `url(${imageAt(4)})` }} />
+              <div className="roma-gallery-item" style={{ backgroundImage: `url(${imageAt(5)})` }} />
+            </div>
+          </div>
+        </section>
+
+        <section className="roma-section roma-testimonials">
+          <div className="roma-container">
+            <div className="roma-section-head roma-section-head-centered"><div><span>آراء العملاء</span><h2>تجربة يحبوا يرجعوا لها</h2></div></div>
+            <div className="roma-review-summary">
+              <div><Star size={22} fill="currentColor" /><strong>4.9</strong><span>من 5</span></div>
+              <p>تقييم ممتاز مبني على جودة ثابتة، توصيل سريع، وطعم يتكرر بنفس المستوى.</p>
+            </div>
+            <div className="roma-testimonial-grid">
+              {testimonials.map((item) => (
+                <article className="roma-testimonial-card" key={item.name}>
+                  <div className="roma-testimonial-stars">★★★★★</div>
+                  <p>“{item.quote}”</p>
+                  <div><strong>{item.name}</strong><span>{item.role}</span></div>
+                </article>
+              ))}
             </div>
           </div>
         </section>
@@ -169,45 +209,26 @@ export default async function PizzaHubLanding() {
       </main>
 
       <footer className="roma-footer">
-        <div className="roma-container roma-footer-grid">
-          <div><Link href="/" className="roma-brand roma-brand-footer"><span className="roma-brand-mark">DR</span><span className="roma-brand-copy"><strong>{settings.restaurant_name}</strong><small>Italian Pizza & Pastry</small></span></Link><p>{settings.tagline}</p></div>
-          <div><h4>روابط سريعة</h4><a href="#home">الرئيسية</a><a href="#bestsellers">الأكثر طلبًا</a><a href="#story">قصتنا</a></div>
-          <div><h4>تواصل معنا</h4><p>{settings.phone}</p><p>{settings.address}</p><p>{settings.hours}</p></div>
-          <div><h4>اطلب الآن</h4><Link href="/menu">المنيو</Link><a href={`https://wa.me/${settings.whatsapp}`}>واتساب</a></div>
+        <div className="roma-container roma-footer-top">
+          <div className="roma-footer-brand-block">
+            <Link href="/" className="roma-brand roma-brand-footer"><span className="roma-brand-mark">DR</span><span className="roma-brand-copy"><strong>{settings.restaurant_name}</strong><small>Italian Pizza & Pastry</small></span></Link>
+            <p>{settings.tagline}</p>
+            <div className="roma-footer-socials"><a href="#">Instagram</a><a href="#">Facebook</a><a href={`https://wa.me/${settings.whatsapp}`}>WhatsApp</a></div>
+          </div>
+          <div className="roma-footer-grid">
+            <div><h4>روابط سريعة</h4><a href="#home">الرئيسية</a><a href="#bestsellers">الأكثر طلبًا</a><a href="#story">قصتنا</a><a href="#gallery">المعرض</a></div>
+            <div><h4>ساعات العمل</h4><p>{settings.hours}</p><p>خدمة الطلب يوميًا</p></div>
+            <div><h4>تواصل معنا</h4><p>{settings.phone}</p><p>{settings.address}</p></div>
+          </div>
+          <div className="roma-footer-newsletter">
+            <span>كن أول من يعرف عروضنا</span>
+            <h4>أحدث العروض مباشرة</h4>
+            <p>سجل بريدك أو رقمك للحصول على العروض الجديدة.</p>
+            <form><input type="email" placeholder="البريد الإلكتروني" aria-label="البريد الإلكتروني" /><button type="submit">اشتراك</button></form>
+          </div>
         </div>
         <div className="roma-footer-bottom">© {new Date().getFullYear()} {settings.restaurant_name}. جميع الحقوق محفوظة.</div>
       </footer>
-
-      <style>{`
-        .roma-product-card,.roma-gallery-item,.roma-story-image{transition:transform .35s ease,box-shadow .35s ease}
-        .roma-product-card:hover{transform:translateY(-6px);box-shadow:0 28px 64px -36px rgba(0,0,0,.48)}
-        .roma-gallery-item:hover,.roma-story-image:hover{transform:scale(1.015)}
-        @media (max-width:980px){
-          .roma-hero-grid{padding:54px 0 46px;gap:8px}
-          .roma-hero-copy{max-width:720px}.roma-hero-showcase{min-height:430px}.roma-story-grid{gap:36px}
-        }
-        @media (max-width:720px){
-          .roma-container{width:calc(100% - 24px)}
-          .roma-header-inner{min-height:66px;grid-template-columns:auto 1fr auto;gap:8px}
-          .roma-brand-copy{display:grid}.roma-brand-copy small{display:none}.roma-brand-mark{width:40px;height:40px;font-size:13px}
-          .roma-header-actions{gap:7px}.roma-order-button{min-height:38px;padding:0 12px;font-size:11px}.roma-menu-button{width:38px;height:38px}
-          .roma-hero{min-height:auto}.roma-hero-grid{display:block;min-height:auto;padding:42px 0 26px}.roma-hero-copy{text-align:center;margin:auto}
-          .roma-kicker{font-size:10px;justify-content:center}.roma-hero-copy h1{font-size:clamp(2.45rem,10.8vw,3.5rem);line-height:1.02;margin-top:12px}
-          .roma-hero-copy p{font-size:13px;line-height:1.75;margin:14px auto 0}.roma-hero-actions,.roma-hero-meta{justify-content:center}.roma-hero-actions{margin-top:18px}.roma-hero-meta{margin-top:16px;gap:10px;font-size:10px}
-          .roma-hero-showcase{min-height:300px;margin-top:10px}.roma-hero-main-plate{width:min(270px,72vw);border-width:8px}
-          .roma-hero-orbit-one{width:76px;height:76px;left:2px;top:36px;border-width:4px}.roma-hero-orbit-two{width:64px;height:64px;right:4px;bottom:38px;border-width:4px}
-          .roma-hero-badge{left:6px;bottom:24px;min-width:96px;padding:8px 9px;border-radius:14px;font-size:11px}
-          .roma-trust-grid{grid-template-columns:repeat(2,1fr)}.roma-trust-grid>div{min-height:82px;padding:10px 6px;gap:7px}.roma-trust-grid strong{font-size:14px}.roma-trust-grid small{font-size:9px}
-          .roma-section{padding:50px 0}.roma-section-head{margin-bottom:22px;gap:10px}.roma-section-head h2,.roma-story-copy h2,.roma-cta-content h2{font-size:clamp(2.25rem,9vw,3.2rem)}
-          .roma-product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.roma-product-card{border-radius:16px}.roma-product-image{height:150px}.roma-product-body{padding:14px}.roma-product-body h3{font-size:18px}
-          .roma-product-body p{min-height:44px;font-size:10px;line-height:1.55;margin-top:7px}.roma-product-body>div{margin-top:12px;font-size:11px}.roma-product-tag{top:9px;right:9px;padding:5px 8px;font-size:9px}.roma-product-image button{top:9px;left:9px;width:31px;height:31px}
-          .roma-story{padding:52px 0}.roma-story-grid{display:flex;flex-direction:column;gap:24px}.roma-story-visual{width:100%;min-height:320px}.roma-story-image-main{width:88%;height:270px;right:0;top:10px}.roma-story-image-small{width:43%;height:145px;left:0;bottom:0;border-width:5px}
-          .roma-story-seal{width:76px;height:76px;font-size:12px;left:18%;top:0}.roma-story-copy{text-align:center}.roma-story-copy p{font-size:12px;line-height:1.8}.roma-story-points{margin:20px 0}.roma-story-points>div{justify-content:center;padding-bottom:9px}
-          .roma-gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:120px;gap:8px}.roma-gallery-wide{grid-column:span 2}.roma-gallery-tall{grid-row:span 2}.roma-gallery-item{border-radius:14px}
-          .roma-cta{min-height:370px;padding:42px 0}.roma-cta-content p{font-size:12px}.roma-footer{padding-top:38px}.roma-footer-grid{grid-template-columns:repeat(2,1fr);gap:22px 12px}.roma-footer-grid>div:first-child{grid-column:1/-1;text-align:center}.roma-brand-footer{justify-content:center}
-        }
-        @media (max-width:420px){.roma-product-grid{grid-template-columns:1fr}.roma-product-image{height:210px}.roma-brand-copy{display:none}}
-      `}</style>
     </div>
   );
 }
