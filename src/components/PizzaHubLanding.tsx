@@ -13,6 +13,7 @@ import {
   UtensilsCrossed,
 } from "lucide-react";
 import { getFeaturedProducts, getSiteSettings } from "@/lib/queries";
+import styles from "./PizzaHubLanding.module.css";
 
 const showcaseImages = [
   "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=1600&q=85",
@@ -54,7 +55,7 @@ export default async function PizzaHubLanding() {
   const thirdImage = imageAt(2);
 
   return (
-    <div className="roma-shell">
+    <div className={`${styles.scope} roma-shell`}>
       <header className="roma-header">
         <div className="roma-container roma-header-inner">
           <Link href="/" className="roma-brand" aria-label={settings.restaurant_name}>
@@ -167,14 +168,17 @@ export default async function PizzaHubLanding() {
 
         <section id="gallery" className="roma-section roma-gallery">
           <div className="roma-container">
-            <div className="roma-section-head roma-section-head-centered"><div><span>من أجوائنا</span><h2>كل صورة تحكي طعمًا</h2><p>تناسق بصري أوضح وصور مرتبة بأحجام محسوبة بدون فراغات مزعجة.</p></div></div>
-            <div className="roma-gallery-grid roma-gallery-balanced">
-              <div className="roma-gallery-item roma-gallery-featured" style={{ backgroundImage: `url(${imageAt(0)})` }}><span>بيتزا طازجة من الفرن</span></div>
-              <div className="roma-gallery-item" style={{ backgroundImage: `url(${imageAt(1)})` }}><span>وصفات إيطالية</span></div>
-              <div className="roma-gallery-item" style={{ backgroundImage: `url(${imageAt(2)})` }}><span>مكونات مختارة</span></div>
-              <div className="roma-gallery-item" style={{ backgroundImage: `url(${imageAt(3)})` }}><span>أجواء المطعم</span></div>
-              <div className="roma-gallery-item" style={{ backgroundImage: `url(${imageAt(4)})` }}><span>طلبات عائلية</span></div>
-              <div className="roma-gallery-item roma-gallery-wide" style={{ backgroundImage: `url(${imageAt(5)})` }}><span>طعم يستحق التكرار</span></div>
+            <div className="roma-section-head roma-section-head-centered">
+              <div><span>من أجوائنا</span><h2>كل صورة تحكي طعمًا</h2><p>معرض مرتب وواضح، بدون صور متداخلة أو أحجام عشوائية.</p></div>
+            </div>
+            <div className="roma-gallery-stage">
+              <div className="roma-gallery-lead" style={{ backgroundImage: `url(${imageAt(0)})` }}><span>بيتزا طازجة من الفرن</span></div>
+              <div className="roma-gallery-side">
+                <div className="roma-gallery-mini" style={{ backgroundImage: `url(${imageAt(1)})` }}><span>وصفات إيطالية</span></div>
+                <div className="roma-gallery-mini" style={{ backgroundImage: `url(${imageAt(2)})` }}><span>مكونات مختارة</span></div>
+                <div className="roma-gallery-mini" style={{ backgroundImage: `url(${imageAt(4)})` }}><span>أجواء مريحة</span></div>
+                <div className="roma-gallery-mini" style={{ backgroundImage: `url(${imageAt(5)})` }}><span>طلبات عائلية</span></div>
+              </div>
             </div>
           </div>
         </section>
