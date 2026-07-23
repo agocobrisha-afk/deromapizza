@@ -643,37 +643,267 @@ button, input { font: inherit; }
 @media (max-width: 640px) {
   .fresh-pizza-container { width: min(100% - 20px, 1180px); }
   .fresh-pizza-topline { display: none; }
-  .fresh-pizza-header-inner { min-height: 70px; gap: 12px; }
-  .fresh-pizza-logo { min-width: 80px; }
-  .fresh-pizza-logo-mark { width: 46px; height: 46px; font-size: 15px; }
-  .fresh-pizza-nav-end { gap: 13px; font-size: 11px; }
+  .fresh-pizza-header-inner {
+    min-height: 64px;
+    grid-template-columns: auto 1fr;
+    gap: 10px;
+  }
+  .fresh-pizza-logo {
+    min-width: 70px;
+    justify-self: end;
+  }
+  .fresh-pizza-logo-mark { width: 42px; height: 42px; font-size: 14px; }
+  .fresh-pizza-nav-end {
+    justify-content: flex-start;
+    gap: 12px;
+    font-size: 11px;
+  }
   .fresh-pizza-nav-end a:not(.fresh-pizza-cart-link):nth-child(-n+2) { display: none; }
-  .fresh-pizza-hero { padding-top: 16px; }
-  .fresh-pizza-centerpiece { min-height: 340px; }
-  .fresh-pizza-main-disc { width: 88vw; border-width: 8px; }
-  .fresh-pizza-cola { width: 72px; height: 120px; right: 6%; bottom: 5%; }
-  .fresh-pizza-hero-copy > span { font-size: 20px; }
-  .fresh-pizza-hero-copy h1 { font-size: 3.6rem; }
-  .fresh-pizza-hero-copy p { font-size: 14px; }
-  .fresh-pizza-category-grid { grid-template-columns: repeat(5, minmax(72px, 1fr)); overflow-x: auto; }
-  .fresh-pizza-category-item { min-width: 84px; padding: 18px 8px; font-size: 12px; }
-  .fresh-pizza-deals-section { padding: 62px 0 70px; }
-  .fresh-pizza-deals-small-grid { grid-template-columns: 1fr; }
-  .fresh-pizza-deal-card { min-height: 260px; }
-  .fresh-pizza-jumbo-deal { min-height: 340px; }
-  .fresh-pizza-subscribe-inner { min-height: auto; }
-  .fresh-pizza-subscribe-art { min-height: 230px; }
-  .fresh-pizza-subscribe-disc { width: 300px; height: 190px; right: 6%; }
-  .fresh-pizza-subscribe-cup { left: 3%; top: 55px; width: 66px; height: 112px; }
-  .fresh-pizza-tomato { width: 58px; height: 58px; }
+
+  .fresh-pizza-hero {
+    min-height: auto;
+    padding: 20px 0 24px;
+  }
+  .fresh-pizza-hero::before {
+    width: 380px;
+    height: 380px;
+    top: 38%;
+  }
+  .fresh-pizza-hero-inner {
+    gap: 8px;
+  }
+  .fresh-pizza-centerpiece {
+    min-height: 300px;
+  }
+  .fresh-pizza-main-disc {
+    width: min(330px, 82vw);
+    border-width: 7px;
+    box-shadow: 0 28px 56px -34px rgba(0,0,0,.55);
+  }
+  .fresh-pizza-cola {
+    width: 60px;
+    height: 100px;
+    right: 8%;
+    bottom: 8%;
+    font-size: 9px;
+  }
+  .fresh-pizza-hero-copy {
+    margin-top: -8px;
+    padding-inline: 14px;
+  }
+  .fresh-pizza-hero-copy > span {
+    font-size: 18px;
+    margin-bottom: 4px;
+  }
+  .fresh-pizza-hero-copy h1 {
+    font-size: clamp(2.7rem, 12vw, 3.45rem);
+    line-height: .98;
+  }
+  .fresh-pizza-hero-copy p {
+    max-width: 330px;
+    margin-top: 12px;
+    font-size: 13px;
+    line-height: 1.75;
+  }
+  .fresh-pizza-hero-actions {
+    margin-top: 16px;
+    gap: 8px;
+  }
+  .fresh-pizza-primary-cta,
+  .fresh-pizza-secondary-cta {
+    min-height: 40px;
+    padding: 0 17px;
+    font-size: 12px;
+  }
+
+  .fresh-pizza-category-grid {
+    min-height: 92px;
+    grid-template-columns: repeat(5, minmax(70px, 1fr));
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .fresh-pizza-category-grid::-webkit-scrollbar { display: none; }
+  .fresh-pizza-category-item {
+    min-width: 76px;
+    gap: 6px;
+    padding: 14px 6px;
+    font-size: 11px;
+  }
+  .fresh-pizza-category-item svg { width: 27px; height: 27px; }
+
+  .fresh-pizza-deals-section { padding: 48px 0 54px; }
+  .fresh-pizza-section-heading span { font-size: 14px; }
+  .fresh-pizza-section-heading h2 { font-size: 2.4rem; }
+  .fresh-pizza-deals-layout {
+    margin-top: 28px;
+    gap: 12px;
+  }
+  .fresh-pizza-deals-small-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .fresh-pizza-deal-card {
+    min-height: 185px;
+    border-radius: 14px;
+  }
+  .fresh-pizza-jumbo-deal {
+    min-height: 250px;
+    border-radius: 14px;
+  }
+  .fresh-pizza-deal-copy,
+  .fresh-pizza-jumbo-copy {
+    inset-inline: 14px;
+    bottom: 13px;
+  }
+  .fresh-pizza-deal-copy h3 { font-size: 17px; }
+  .fresh-pizza-jumbo-copy h3 { font-size: 25px; }
+  .fresh-pizza-deal-copy p,
+  .fresh-pizza-jumbo-copy p {
+    font-size: 11px;
+    line-height: 1.55;
+  }
+  .fresh-pizza-deal-copy a,
+  .fresh-pizza-jumbo-copy a {
+    margin-top: 8px;
+    padding: 7px 11px;
+    font-size: 10px;
+  }
+
+  .fresh-pizza-subscribe {
+    padding: 26px 0 30px;
+  }
+  .fresh-pizza-subscribe-inner {
+    min-height: auto;
+    gap: 8px;
+  }
+  .fresh-pizza-subscribe-art {
+    order: -1;
+    min-height: 180px;
+  }
+  .fresh-pizza-subscribe-disc {
+    width: min(265px, 70vw);
+    height: 155px;
+    right: 12%;
+    top: 6px;
+    border-radius: 42% 42% 20px 20px;
+  }
+  .fresh-pizza-subscribe-cup {
+    left: 4%;
+    top: 42px;
+    width: 54px;
+    height: 92px;
+    font-size: 8px;
+  }
+  .fresh-pizza-tomato {
+    width: 48px;
+    height: 48px;
+    right: 4%;
+    bottom: 4px;
+  }
+  .fresh-pizza-subscribe-copy {
+    text-align: center;
+    padding-inline: 8px;
+  }
   .fresh-pizza-subscribe-copy > span,
-  .fresh-pizza-subscribe-copy h2 { font-size: 26px; }
-  .fresh-pizza-subscribe-form { flex-direction: column; border-radius: 18px; }
-  .fresh-pizza-subscribe-form input { min-height: 48px; }
-  .fresh-pizza-subscribe-form button { min-height: 46px; }
-  .fresh-pizza-app { padding-top: 42px; }
-  .fresh-pizza-app-inner { gap: 28px; }
-  .fresh-pizza-phone { width: 210px; height: 390px; }
-  .fresh-pizza-app-copy h2 { font-size: 3.2rem; }
-  .fresh-pizza-footer-grid { grid-template-columns: 1fr; }
+  .fresh-pizza-subscribe-copy h2 {
+    font-size: 24px;
+  }
+  .fresh-pizza-subscribe-copy p {
+    margin-top: 8px;
+    font-size: 13px;
+  }
+  .fresh-pizza-subscribe-form {
+    margin: 16px auto 0;
+    max-width: 340px;
+    border-radius: 999px;
+    flex-direction: row;
+  }
+  .fresh-pizza-subscribe-form input {
+    min-height: 42px;
+    font-size: 12px;
+  }
+  .fresh-pizza-subscribe-form button {
+    min-height: 42px;
+    padding: 0 18px;
+    font-size: 12px;
+  }
+
+  .fresh-pizza-app {
+    padding: 34px 0 0;
+  }
+  .fresh-pizza-app-inner {
+    gap: 16px;
+  }
+  .fresh-pizza-phone {
+    width: 180px;
+    height: 330px;
+    padding: 10px;
+    border-radius: 32px 32px 0 0;
+  }
+  .fresh-pizza-phone-notch {
+    width: 68px;
+    height: 14px;
+  }
+  .fresh-pizza-phone-screen {
+    gap: 16px;
+    padding: 46px 12px 14px;
+    border-radius: 23px 23px 0 0;
+  }
+  .fresh-pizza-phone-logo {
+    width: 68px;
+    height: 68px;
+    font-size: 21px;
+  }
+  .fresh-pizza-phone-card {
+    height: 130px;
+    border-radius: 14px;
+  }
+  .fresh-pizza-app-copy {
+    padding: 0 12px 34px;
+  }
+  .fresh-pizza-app-copy > span {
+    font-size: 12px;
+  }
+  .fresh-pizza-app-copy h2 {
+    margin-top: 6px;
+    font-size: 2.65rem;
+  }
+  .fresh-pizza-app-copy p {
+    margin-top: 12px;
+    font-size: 13px;
+    line-height: 1.65;
+  }
+  .fresh-pizza-store-row {
+    margin-top: 16px;
+    justify-content: center;
+    gap: 8px;
+  }
+  .fresh-pizza-store-row span {
+    padding: 10px 13px;
+    font-size: 11px;
+  }
+
+  .fresh-pizza-footer {
+    padding: 34px 0 16px;
+  }
+  .fresh-pizza-footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px 16px;
+  }
+  .fresh-pizza-footer-grid > div:first-child {
+    grid-column: 1 / -1;
+    text-align: center;
+  }
+  .fresh-pizza-footer h3 { font-size: 24px; }
+  .fresh-pizza-footer h4 { font-size: 14px; }
+  .fresh-pizza-footer p,
+  .fresh-pizza-footer a {
+    margin-top: 7px;
+    font-size: 12px;
+    line-height: 1.65;
+  }
+  .fresh-pizza-copyright {
+    margin-top: 24px;
+    font-size: 11px;
+  }
 }
