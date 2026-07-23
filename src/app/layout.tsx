@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cairo, Plus_Jakarta_Sans } from "next/font/google";
+import { Cairo, Changa, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
 export const dynamic = "force-dynamic";
@@ -9,6 +9,12 @@ const cairo = Cairo({
   subsets: ["arabic", "latin"],
   variable: "--font-cairo",
   weight: ["400", "500", "600", "700", "800", "900"],
+});
+
+const changa = Changa({
+  subsets: ["arabic", "latin"],
+  variable: "--font-changa",
+  weight: ["500", "600", "700", "800"],
 });
 
 const jakarta = Plus_Jakarta_Sans({
@@ -29,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar" dir="rtl">
-      <body className={`${cairo.variable} ${jakarta.variable}`}>
+      <body className={`${cairo.variable} ${changa.variable} ${jakarta.variable}`}>
         {children}
       </body>
     </html>
