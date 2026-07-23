@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cairo, Changa, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+import "./cart.css";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
