@@ -11,7 +11,6 @@ import {
   UserRound,
   Facebook,
   Instagram,
-  Twitter,
 } from "lucide-react";
 import { getFeaturedProducts, getSiteSettings } from "@/lib/queries";
 
@@ -49,7 +48,6 @@ export default async function PizzaHubLanding() {
           </div>
           <div className="fresh-pizza-social-mini">
             <Facebook size={13} />
-            <Twitter size={13} />
             <Instagram size={13} />
             <span><UserRound size={13} /> حسابي</span>
           </div>
