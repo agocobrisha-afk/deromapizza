@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { CSSProperties } from "react";
 import {
   ArrowLeft,
   Clock3,
@@ -15,13 +16,13 @@ import {
 import { getFeaturedProducts, getSiteSettings } from "@/lib/queries";
 import styles from "./PizzaHubLanding.module.css";
 
-const showcaseImages = [
-  "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=1600&q=85",
-  "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=1400&q=85",
-  "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1400&q=85",
-  "https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?auto=format&fit=crop&w=1400&q=85",
-  "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1400&q=85",
-  "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1400&q=85",
+const fallbackImages = [
+  "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=1800&q=88",
+  "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=1500&q=86",
+  "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1500&q=86",
+  "https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?auto=format&fit=crop&w=1500&q=86",
+  "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1500&q=86",
+  "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1500&q=86",
 ];
 
 const testimonials = [
@@ -42,6 +43,12 @@ const testimonials = [
   },
 ];
 
+const fontMap: Record<string, string> = {
+  cairo: "var(--font-cairo)",
+  changa: "var(--font-changa)",
+  jakarta: "var(--font-jakarta)",
+};
+
 export default async function PizzaHubLanding() {
   const [settings, products] = await Promise.all([
     getSiteSettings(),
@@ -49,13 +56,41 @@ export default async function PizzaHubLanding() {
   ]);
 
   const featured = products.slice(0, 4);
-  const imageAt = (index: number) => showcaseImages[index % showcaseImages.length];
-  const primaryImage = imageAt(0);
-  const secondaryImage = imageAt(1);
-  const thirdImage = imageAt(2);
+  const cmsImages = (settings.gallery_images ?? []).filter(Boolean);
+  const imagePool = [settings.hero_image_url, ...cmsImages, ...fallbackImages].filter(
+    (image): image is string => Boolean(image),
+  );
+  const imageAt = (index: number) => imagePool[index % imagePool.length];
+
+  const themeStyle = {
+    "--roma-red": settings.primary_color,
+    "--roma-red-dark": settings.secondary_color ?? "#171717",
+    "--roma-accent": settings.accent_color ?? "#F6B94A",
+    "--roma-page": settings.background_color ?? "#FFFDFB",
+    "--roma-surface": settings.surface_color ?? "#FFFFFF",
+    "--roma-ink": settings.text_color ?? "#171717",
+    "--roma-muted": settings.muted_text_color ?? "#746C68",
+    "--roma-radius": `${settings.border_radius ?? 24}px`,
+    "--roma-heading-scale": String(settings.heading_scale ?? 1),
+    "--roma-shadow-alpha": String(settings.shadow_strength ?? 0.22),
+    "--font-body": fontMap[settings.font_body ?? "cairo"] ?? "var(--font-cairo)",
+    "--font-display": fontMap[settings.font_display ?? "changa"] ?? "var(--font-changa)",
+    fontSize: `${settings.base_font_size ?? 16}px`,
+  } as CSSProperties;
+
+  const heading = [settings.hero_headline, settings.hero_headline_accent]
+    .filter(Boolean)
+    .join(" ");
 
   return (
-    <div className={`${styles.scope} roma-shell`}>
+    <div
+      className={`${styles.scope} roma-shell`}
+      data-theme={settings.theme_id}
+      data-header={settings.header_style ?? "glass"}
+      data-hero={settings.hero_style ?? "editorial"}
+      data-card={settings.card_style ?? "soft"}
+      style={themeStyle}
+    >
       <header className="roma-header">
         <div className="roma-container roma-header-inner">
           <Link href="/" className="roma-brand" aria-label={settings.restaurant_name}>
@@ -83,16 +118,16 @@ export default async function PizzaHubLanding() {
 
       <main>
         <section id="home" className="roma-hero">
-          <div className="roma-hero-bg" style={{ backgroundImage: `url(${primaryImage})` }} />
+          <div className="roma-hero-bg" style={{ backgroundImage: `url(${imageAt(0)})` }} />
           <div className="roma-hero-shade" />
           <div className="roma-container roma-hero-grid">
             <div className="roma-hero-copy">
-              <span className="roma-kicker"><Sparkles size={16} /> طعم إيطالي حقيقي في قلب طرابلس</span>
-              <h1>بيتزا تُخبز بحب، وتصل ساخنة إلى بابك</h1>
-              <p>{settings.tagline || "عجينة يومية، مكونات مختارة، وطعم يخلّي كل طلب تجربة تستحق التكرار."}</p>
+              <span className="roma-kicker"><Sparkles size={16} /> {settings.hero_badge}</span>
+              <h1>{heading || "بيتزا تُخبز بحب، وتصل ساخنة إلى بابك"}</h1>
+              <p>{settings.hero_subheadline || settings.tagline}</p>
               <div className="roma-hero-actions">
-                <Link href="/menu" className="roma-primary-cta">شاهد المنيو <ArrowLeft size={18} /></Link>
-                <a href={`https://wa.me/${settings.whatsapp}`} className="roma-secondary-cta">اطلب عبر واتساب</a>
+                <Link href="/menu" className="roma-primary-cta">{settings.cta_primary_label || "شاهد المنيو"}<ArrowLeft size={18} /></Link>
+                <a href={`https://wa.me/${settings.whatsapp}`} className="roma-secondary-cta">{settings.cta_secondary_label || "اطلب عبر واتساب"}</a>
               </div>
               <div className="roma-hero-meta">
                 <span><Clock3 size={16} /> تحضير يومي</span>
@@ -102,9 +137,9 @@ export default async function PizzaHubLanding() {
             </div>
 
             <div className="roma-hero-showcase" aria-hidden="true">
-              <div className="roma-hero-orbit roma-hero-orbit-one" style={{ backgroundImage: `url(${secondaryImage})` }} />
-              <div className="roma-hero-orbit roma-hero-orbit-two" style={{ backgroundImage: `url(${thirdImage})` }} />
-              <div className="roma-hero-main-plate" style={{ backgroundImage: `url(${imageAt(5)})` }} />
+              <div className="roma-hero-orbit roma-hero-orbit-one" style={{ backgroundImage: `url(${imageAt(1)})` }} />
+              <div className="roma-hero-orbit roma-hero-orbit-two" style={{ backgroundImage: `url(${imageAt(2)})` }} />
+              <div className="roma-hero-main-plate" style={{ backgroundImage: `url(${imageAt(3)})` }} />
               <div className="roma-hero-badge"><Star size={18} fill="currentColor" /><strong>4.9</strong><span>تقييم الزبائن</span></div>
             </div>
           </div>
@@ -128,7 +163,7 @@ export default async function PizzaHubLanding() {
             <div className="roma-product-grid">
               {featured.map((product, index) => (
                 <article className="roma-product-card" key={product.id}>
-                  <div className="roma-product-image" style={{ backgroundImage: `url(${imageAt(index + 1)})` }}>
+                  <div className="roma-product-image" style={{ backgroundImage: `url(${product.image_url || imageAt(index + 1)})` }}>
                     <span className="roma-product-tag">مميز</span>
                     <button type="button" aria-label="إضافة للمفضلة"><Heart size={17} /></button>
                   </div>
@@ -153,9 +188,9 @@ export default async function PizzaHubLanding() {
               <div className="roma-story-seal">من الفرن<br />إلى بابك</div>
             </div>
             <div className="roma-story-copy">
-              <span>قصتنا</span>
-              <h2>نخبز كل قطعة وكأنها أول طلب في اليوم</h2>
-              <p>في De Roma نهتم بالعجينة قبل كل شيء، ونختار المكونات بعناية، ونحافظ على نفس الجودة في كل مرة. الهدف بسيط: بيتزا بطعم واضح، جبنة حقيقية، وخدمة تستحق الثقة.</p>
+              <span>{settings.about_badge || "قصتنا"}</span>
+              <h2>{settings.about_title}</h2>
+              <p>{settings.about_body}</p>
               <div className="roma-story-points">
                 <div><strong>01</strong><span>عجينة تُحضّر يوميًا</span></div>
                 <div><strong>02</strong><span>مكونات مختارة</span></div>
@@ -169,7 +204,7 @@ export default async function PizzaHubLanding() {
         <section id="gallery" className="roma-section roma-gallery">
           <div className="roma-container">
             <div className="roma-section-head roma-section-head-centered">
-              <div><span>من أجوائنا</span><h2>كل صورة تحكي طعمًا</h2><p>معرض مرتب وواضح، بدون صور متداخلة أو أحجام عشوائية.</p></div>
+              <div><span>من أجوائنا</span><h2>{settings.gallery_title || "كل صورة تحكي طعمًا"}</h2><p>{settings.gallery_subtitle || "صور مرتبة ومتناسقة تعرض الأكل والأجواء بدون ازدحام أو أحجام عشوائية."}</p></div>
             </div>
             <div className="roma-gallery-stage">
               <div className="roma-gallery-lead" style={{ backgroundImage: `url(${imageAt(0)})` }}><span>بيتزا طازجة من الفرن</span></div>
@@ -216,12 +251,12 @@ export default async function PizzaHubLanding() {
         <div className="roma-container roma-footer-top">
           <div className="roma-footer-brand-block">
             <Link href="/" className="roma-brand roma-brand-footer"><span className="roma-brand-mark">DR</span><span className="roma-brand-copy"><strong>{settings.restaurant_name}</strong><small>Italian Pizza & Pastry</small></span></Link>
-            <p>{settings.tagline || "بيتزا إيطالية بطابع محلي، عجينة يومية، وخدمة توصيل داخل طرابلس."}</p>
+            <p>{settings.footer_text || settings.tagline}</p>
             <div className="roma-footer-socials"><a href="#">Instagram</a><a href="#">Facebook</a><a href={`https://wa.me/${settings.whatsapp}`}>WhatsApp</a></div>
           </div>
           <div className="roma-footer-grid">
             <div><h4>روابط سريعة</h4><a href="#home">الرئيسية</a><a href="#bestsellers">الأكثر طلبًا</a><a href="#story">قصتنا</a><a href="#gallery">المعرض</a></div>
-            <div><h4>ساعات العمل</h4><p>{settings.hours || "يوميًا من 1:00 ظهرًا حتى 1:00 صباحًا"}</p><p>تحضير يومي</p><p>توصيل داخل طرابلس</p></div>
+            <div><h4>ساعات العمل</h4><p>{settings.hours}</p><p>تحضير يومي</p><p>توصيل داخل طرابلس</p></div>
             <div><h4>تواصل معنا</h4><p>{settings.phone}</p><p>{settings.address}</p><Link href="/menu">اطلب من المنيو</Link></div>
           </div>
           <div className="roma-footer-newsletter"><span>عروض De Roma</span><h4>خليك أول واحد يعرف</h4><p>سجل بريدك للحصول على العروض والخصومات الجديدة.</p><form><input type="email" placeholder="البريد الإلكتروني" aria-label="البريد الإلكتروني" /><button type="submit">اشترك</button></form></div>
