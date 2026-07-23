@@ -9,8 +9,6 @@ import {
   MapPin,
   Phone,
   UserRound,
-  Facebook,
-  Instagram,
 } from "lucide-react";
 import { getFeaturedProducts, getSiteSettings } from "@/lib/queries";
 
@@ -47,8 +45,8 @@ export default async function PizzaHubLanding() {
             <span><Phone size={13} /> {settings.phone}</span>
           </div>
           <div className="fresh-pizza-social-mini">
-            <Facebook size={13} />
-            <Instagram size={13} />
+            <span className="fresh-pizza-social-dot" aria-hidden="true">f</span>
+            <span className="fresh-pizza-social-dot" aria-hidden="true">◎</span>
             <span><UserRound size={13} /> حسابي</span>
           </div>
         </div>
