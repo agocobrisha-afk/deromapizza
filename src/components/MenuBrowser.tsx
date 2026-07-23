@@ -1,96 +1,93 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { Minus, Plus, ShoppingBag } from "lucide-react";
 import { Category, Product } from "@/lib/types";
 
 type CategoryWithProducts = Category & { products: Product[] };
+type CartItem = { id: string; name: string; price: number; image?: string | null; quantity: number };
+const CART_KEY = "deroma_cart";
 
-export default function MenuBrowser({
-  categories,
-}: {
-  categories: CategoryWithProducts[];
-}) {
+export default function MenuBrowser({ categories }: { categories: CategoryWithProducts[] }) {
   const [activeId, setActiveId] = useState(categories[0]?.id);
+  const [cart, setCart] = useState<CartItem[]>([]);
   const active = categories.find((c) => c.id === activeId) ?? categories[0];
+
+  useEffect(() => {
+    try {
+      setCart(JSON.parse(window.localStorage.getItem(CART_KEY) || "[]"));
+    } catch {
+      setCart([]);
+    }
+  }, []);
+
+  const persist = (next: CartItem[]) => {
+    setCart(next);
+    window.localStorage.setItem(CART_KEY, JSON.stringify(next));
+    window.dispatchEvent(new Event("deroma-cart-updated"));
+  };
+
+  const add = (item: Product) => {
+    const id = String(item.id);
+    const existing = cart.find((entry) => entry.id === id);
+    if (existing) {
+      persist(cart.map((entry) => entry.id === id ? { ...entry, quantity: entry.quantity + 1 } : entry));
+      return;
+    }
+    persist([...cart, { id, name: item.name_ar, price: Number(item.price || 0), image: item.image_url, quantity: 1 }]);
+  };
+
+  const change = (item: Product, delta: number) => {
+    const id = String(item.id);
+    persist(cart.map((entry) => entry.id === id ? { ...entry, quantity: Math.max(0, entry.quantity + delta) } : entry).filter((entry) => entry.quantity > 0));
+  };
+
+  const count = useMemo(() => cart.reduce((sum, item) => sum + item.quantity, 0), [cart]);
 
   if (!active) return null;
 
   return (
-    <div>
-      <div className="sticky top-[73px] z-30 -mx-5 bg-cream/95 px-5 py-3.5 backdrop-blur-md sm:top-[77px]">
-        <div className="flex gap-2 overflow-x-auto pb-1">
+    <div className="roma-menu-browser" dir="rtl">
+      <div className="roma-menu-tabs-wrap">
+        <div className="roma-menu-tabs">
           {categories.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => setActiveId(cat.id)}
-              className={`shrink-0 rounded-full border px-4 py-2 text-sm font-bold transition-colors ${
-                cat.id === activeId
-                  ? "border-red bg-red text-white"
-                  : "border-line bg-white text-ink-soft hover:border-red/50 hover:text-red"
-              }`}
-              style={{ fontFamily: "var(--font-heading)" }}
-            >
+            <button key={cat.id} onClick={() => setActiveId(cat.id)} className={cat.id === activeId ? "is-active" : ""}>
               {cat.name_ar}
             </button>
           ))}
         </div>
+        <Link href="/cart" className="roma-menu-cart-link"><ShoppingBag size={18} /><span>السلة</span><b>{count}</b></Link>
       </div>
 
-      <div className="mt-5">
-        {active.subtitle_ar && (
-          <p
-            className="mb-5 text-ink-soft"
-            style={{ fontFamily: "var(--font-body)" }}
-          >
-            {active.subtitle_ar}
-          </p>
-        )}
+      {active.subtitle_ar && <p className="roma-menu-subtitle">{active.subtitle_ar}</p>}
 
-        <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
-          {active.products.map((item) => (
-            <div
-              key={item.id}
-              className="card-shadow flex gap-4 rounded-2xl bg-white p-3.5 sm:p-4"
-            >
-              {item.image_url && (
-                <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl sm:h-24 sm:w-24">
-                  <Image
-                    src={item.image_url}
-                    alt={item.name_ar}
-                    fill
-                    className="object-cover"
-                    sizes="96px"
-                  />
-                </div>
-              )}
-              <div className="flex flex-1 flex-col">
-                <div className="flex items-start justify-between gap-3">
-                  <h3
-                    className="text-[15px] font-bold text-ink sm:text-base"
-                    style={{ fontFamily: "var(--font-heading)" }}
-                  >
-                    {item.name_ar}
-                  </h3>
-                  <span
-                    className="shrink-0 rounded-full bg-red-tint px-2.5 py-1 text-[13px] font-extrabold text-red-dark"
-                    style={{ fontFamily: "var(--font-heading)" }}
-                  >
-                    {item.price} د.ل
-                  </span>
-                </div>
-                {item.description_ar && (
-                  <p
-                    className="mt-1 text-[13px] leading-relaxed text-ink-soft"
-                    style={{ fontFamily: "var(--font-body)" }}
-                  >
-                    {item.description_ar}
-                  </p>
+      <div className="roma-menu-grid">
+        {active.products.map((item) => {
+          const quantity = cart.find((entry) => entry.id === String(item.id))?.quantity || 0;
+          return (
+            <article className="roma-menu-card" key={item.id}>
+              <div className="roma-menu-image">
+                {item.image_url && <Image src={item.image_url} alt={item.name_ar} fill className="object-cover" sizes="(max-width: 640px) 50vw, 33vw" />}
+                <span>مميز</span>
+              </div>
+              <div className="roma-menu-card-body">
+                <div className="roma-menu-card-head"><h3>{item.name_ar}</h3><strong>{item.price} د.ل</strong></div>
+                {item.description_ar && <p>{item.description_ar}</p>}
+                {quantity === 0 ? (
+                  <button className="roma-menu-add" onClick={() => add(item)}><ShoppingBag size={16} />أضف للسلة</button>
+                ) : (
+                  <div className="roma-menu-stepper">
+                    <button onClick={() => change(item, 1)} aria-label="زيادة"><Plus size={15} /></button>
+                    <span>{quantity}</span>
+                    <button onClick={() => change(item, -1)} aria-label="تقليل"><Minus size={15} /></button>
+                  </div>
                 )}
               </div>
-            </div>
-          ))}
-        </div>
+            </article>
+          );
+        })}
       </div>
     </div>
   );
