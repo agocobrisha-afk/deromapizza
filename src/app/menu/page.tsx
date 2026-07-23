@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import WhatsAppFloat from "@/components/WhatsAppFloat";
+import Link from "next/link";
+import { ArrowLeft, ShoppingBag } from "lucide-react";
 import MenuBrowser from "@/components/MenuBrowser";
 import { getCategoriesWithProducts, getSiteSettings } from "@/lib/queries";
 
@@ -11,35 +10,40 @@ export const metadata: Metadata = {
 };
 
 export default async function MenuPage() {
-  const [categories, s] = await Promise.all([
+  const [categories, settings] = await Promise.all([
     getCategoriesWithProducts(),
     getSiteSettings(),
   ]);
 
   return (
-    <>
-      <Header />
-      <main className="mx-auto min-h-screen max-w-4xl px-5 pb-20 pt-8 sm:pt-10">
-        <h1
-          className="text-2xl font-extrabold text-ink sm:text-[32px]"
-          style={{ fontFamily: "var(--font-heading)" }}
-        >
-          كل أصناف {s.restaurant_name}
-        </h1>
-        <p
-          className="mt-2 text-ink-soft"
-          style={{ fontFamily: "var(--font-body)" }}
-        >
-          الطلب المباشر من الموقع قريبًا — لحد ذلك اطلب مباشرة عبر واتساب أو
-          اتصال.
-        </p>
-
-        <div className="mt-6">
-          <MenuBrowser categories={categories} />
+    <div className="roma-shell" dir="rtl">
+      <header className="roma-header">
+        <div className="roma-container roma-header-inner">
+          <Link href="/" className="roma-brand" aria-label={settings.restaurant_name}>
+            <span className="roma-brand-mark">DR</span>
+            <span className="roma-brand-copy"><strong>{settings.restaurant_name}</strong><small>Pizza · Pastry · Italian Taste</small></span>
+          </Link>
+          <nav className="roma-nav" aria-label="التنقل الرئيسي"><Link href="/">الرئيسية</Link><a href="#menu">المنيو</a><Link href="/cart">السلة</Link></nav>
+          <div className="roma-header-actions"><Link href="/cart" className="roma-order-button"><ShoppingBag size={17} />السلة</Link></div>
         </div>
+      </header>
+
+      <main className="roma-menu-page">
+        <section className="roma-menu-hero">
+          <div className="roma-container roma-menu-hero-inner">
+            <span>منيو De Roma</span>
+            <h1>اختار اللي يعجبك وخلي الطلب علينا</h1>
+            <p>كل الأصناف بنفس الهوية البصرية للصفحة الرئيسية، مع إضافة مباشرة للسلة وتعديل الكميات بسهولة.</p>
+            <Link href="/" className="roma-secondary-cta roma-secondary-cta-menu">العودة للرئيسية <ArrowLeft size={17} /></Link>
+          </div>
+        </section>
+
+        <section id="menu" className="roma-section roma-menu-section">
+          <div className="roma-container">
+            <MenuBrowser categories={categories} />
+          </div>
+        </section>
       </main>
-      <Footer />
-      <WhatsAppFloat />
-    </>
+    </div>
   );
 }
