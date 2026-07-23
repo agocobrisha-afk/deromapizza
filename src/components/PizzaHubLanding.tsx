@@ -14,11 +14,13 @@ import {
 } from "lucide-react";
 import { getFeaturedProducts, getSiteSettings } from "@/lib/queries";
 
-const fallbackImages = [
-  "/images/table-two-pizzas.jpg",
-  "/images/pizza-slice-pull.jpg",
-  "/images/table-two-pizzas.jpg",
-  "/images/pizza-slice-pull.jpg",
+const showcaseImages = [
+  "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=1600&q=85",
+  "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=1400&q=85",
+  "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1400&q=85",
+  "https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?auto=format&fit=crop&w=1400&q=85",
+  "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1400&q=85",
+  "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1400&q=85",
 ];
 
 export default async function PizzaHubLanding() {
@@ -27,9 +29,8 @@ export default async function PizzaHubLanding() {
     getFeaturedProducts(),
   ]);
 
-  const featured = products.slice(0, 6);
-  const imageAt = (index: number) =>
-    featured[index]?.image_url || fallbackImages[index % fallbackImages.length];
+  const featured = products.slice(0, 4);
+  const imageAt = (index: number) => showcaseImages[index % showcaseImages.length];
   const primaryImage = imageAt(0);
   const secondaryImage = imageAt(1);
   const thirdImage = imageAt(2);
@@ -95,7 +96,7 @@ export default async function PizzaHubLanding() {
             <div className="roma-hero-showcase" aria-hidden="true">
               <div className="roma-hero-orbit roma-hero-orbit-one" style={{ backgroundImage: `url(${secondaryImage})` }} />
               <div className="roma-hero-orbit roma-hero-orbit-two" style={{ backgroundImage: `url(${thirdImage})` }} />
-              <div className="roma-hero-main-plate" style={{ backgroundImage: `url(${primaryImage})` }} />
+              <div className="roma-hero-main-plate" style={{ backgroundImage: `url(${imageAt(5)})` }} />
               <div className="roma-hero-badge">
                 <Star size={18} fill="currentColor" />
                 <strong>4.9</strong>
@@ -125,9 +126,9 @@ export default async function PizzaHubLanding() {
             </div>
 
             <div className="roma-product-grid">
-              {featured.slice(0, 4).map((product, index) => (
+              {featured.map((product, index) => (
                 <article className="roma-product-card" key={product.id}>
-                  <div className="roma-product-image" style={{ backgroundImage: `url(${product.image_url || imageAt(index)})` }}>
+                  <div className="roma-product-image" style={{ backgroundImage: `url(${imageAt(index + 1)})` }}>
                     <span className="roma-product-tag">مميز</span>
                     <button type="button" aria-label="إضافة للمفضلة"><Heart size={17} /></button>
                   </div>
@@ -148,8 +149,8 @@ export default async function PizzaHubLanding() {
         <section id="story" className="roma-story">
           <div className="roma-container roma-story-grid">
             <div className="roma-story-visual">
-              <div className="roma-story-image roma-story-image-main" style={{ backgroundImage: `url(${secondaryImage})` }} />
-              <div className="roma-story-image roma-story-image-small" style={{ backgroundImage: `url(${thirdImage})` }} />
+              <div className="roma-story-image roma-story-image-main" style={{ backgroundImage: `url(${imageAt(2)})` }} />
+              <div className="roma-story-image roma-story-image-small" style={{ backgroundImage: `url(${imageAt(4)})` }} />
               <div className="roma-story-seal">من الفرن<br />إلى بابك</div>
             </div>
             <div className="roma-story-copy">
@@ -175,9 +176,9 @@ export default async function PizzaHubLanding() {
               </div>
             </div>
             <div className="roma-gallery-grid">
-              <div className="roma-gallery-item roma-gallery-wide" style={{ backgroundImage: `url(${primaryImage})` }} />
-              <div className="roma-gallery-item" style={{ backgroundImage: `url(${secondaryImage})` }} />
-              <div className="roma-gallery-item" style={{ backgroundImage: `url(${thirdImage})` }} />
+              <div className="roma-gallery-item roma-gallery-wide" style={{ backgroundImage: `url(${imageAt(0)})` }} />
+              <div className="roma-gallery-item" style={{ backgroundImage: `url(${imageAt(1)})` }} />
+              <div className="roma-gallery-item" style={{ backgroundImage: `url(${imageAt(2)})` }} />
               <div className="roma-gallery-item" style={{ backgroundImage: `url(${imageAt(3)})` }} />
               <div className="roma-gallery-item roma-gallery-tall" style={{ backgroundImage: `url(${imageAt(4)})` }} />
             </div>
@@ -185,7 +186,7 @@ export default async function PizzaHubLanding() {
         </section>
 
         <section className="roma-cta">
-          <div className="roma-cta-bg" style={{ backgroundImage: `url(${primaryImage})` }} />
+          <div className="roma-cta-bg" style={{ backgroundImage: `url(${imageAt(5)})` }} />
           <div className="roma-cta-shade" />
           <div className="roma-container roma-cta-content">
             <span>جاهز للطلب؟</span>
