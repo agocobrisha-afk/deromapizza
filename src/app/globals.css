@@ -27,9 +27,9 @@ button, input { font: inherit; }
 .roma-shell {
   min-height: 100vh;
   background:
-    linear-gradient(rgba(255,255,255,.98), rgba(255,255,255,.98)),
-    repeating-linear-gradient(0deg, rgba(155,126,112,.06) 0 1px, transparent 1px 34px),
-    repeating-linear-gradient(90deg, rgba(155,126,112,.04) 0 1px, transparent 1px 34px);
+    linear-gradient(rgba(255,255,255,.985), rgba(255,255,255,.985)),
+    repeating-linear-gradient(0deg, rgba(155,126,112,.05) 0 1px, transparent 1px 34px),
+    repeating-linear-gradient(90deg, rgba(155,126,112,.035) 0 1px, transparent 1px 34px);
 }
 
 .roma-container {
@@ -41,13 +41,13 @@ button, input { font: inherit; }
   position: sticky;
   top: 0;
   z-index: 70;
-  background: rgba(255,255,255,.96);
+  background: rgba(255,255,255,.97);
   border-bottom: 1px solid #eee6e1;
   backdrop-filter: blur(14px);
 }
 
 .roma-header-inner {
-  min-height: 78px;
+  min-height: 76px;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
@@ -56,8 +56,8 @@ button, input { font: inherit; }
 
 .roma-brand { display: inline-flex; align-items: center; gap: 10px; }
 .roma-brand-mark {
-  width: 50px;
-  height: 50px;
+  width: 48px;
+  height: 48px;
   display: grid;
   place-items: center;
   border-radius: 50%;
@@ -106,7 +106,7 @@ button, input { font: inherit; }
 
 .roma-hero {
   position: relative;
-  min-height: 680px;
+  min-height: 650px;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -126,7 +126,7 @@ button, input { font: inherit; }
 .roma-hero-grid {
   position: relative;
   z-index: 2;
-  min-height: 680px;
+  min-height: 650px;
   display: grid;
   grid-template-columns: 1.05fr .95fr;
   align-items: center;
@@ -161,10 +161,10 @@ button, input { font: inherit; }
 .roma-hero-actions { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 12px; }
 .roma-hero-meta { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 16px; color: rgba(255,255,255,.82); font-size: 13px; }
 .roma-hero-meta span { display: inline-flex; align-items: center; gap: 7px; }
-.roma-hero-showcase { position: relative; min-height: 500px; }
+.roma-hero-showcase { position: relative; min-height: 470px; }
 .roma-hero-main-plate {
   position: absolute;
-  width: min(490px, 40vw);
+  width: min(470px, 39vw);
   aspect-ratio: 1;
   right: 50%;
   top: 50%;
@@ -176,14 +176,14 @@ button, input { font: inherit; }
   box-shadow: 0 48px 86px -40px rgba(0,0,0,.92);
 }
 .roma-hero-orbit { position: absolute; border-radius: 24px; border: 7px solid rgba(255,255,255,.92); background-size: cover; background-position: center; box-shadow: 0 28px 58px -30px rgba(0,0,0,.86); }
-.roma-hero-orbit-one { width: 150px; height: 150px; left: -4px; top: 54px; transform: rotate(-8deg); }
-.roma-hero-orbit-two { width: 110px; height: 110px; right: 4px; bottom: 68px; transform: rotate(8deg); }
+.roma-hero-orbit-one { width: 142px; height: 142px; left: 0; top: 54px; transform: rotate(-8deg); }
+.roma-hero-orbit-two { width: 104px; height: 104px; right: 8px; bottom: 64px; transform: rotate(8deg); }
 .roma-hero-badge {
   position: absolute;
   left: 34px;
-  bottom: 48px;
-  min-width: 132px;
-  padding: 12px 14px;
+  bottom: 44px;
+  min-width: 126px;
+  padding: 11px 13px;
   display: grid;
   grid-template-columns: auto auto;
   align-items: center;
@@ -198,14 +198,14 @@ button, input { font: inherit; }
 .roma-hero-badge span { grid-column: 1 / -1; color: var(--roma-muted); font-size: 11px; }
 
 .roma-trust-bar { background: var(--roma-red); color: #fff; box-shadow: 0 22px 44px -32px rgba(217,17,50,.85); }
-.roma-trust-grid { min-height: 104px; display: grid; grid-template-columns: repeat(4, 1fr); }
-.roma-trust-grid > div { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 16px; border-inline-start: 1px solid rgba(255,255,255,.18); }
+.roma-trust-grid { min-height: 96px; display: grid; grid-template-columns: repeat(4, 1fr); }
+.roma-trust-grid > div { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 14px; border-inline-start: 1px solid rgba(255,255,255,.18); }
 .roma-trust-grid > div:last-child { border-inline-end: 1px solid rgba(255,255,255,.18); }
 .roma-trust-grid strong { display: block; font-family: var(--font-display), var(--font-body), sans-serif; font-size: 18px; }
 .roma-trust-grid small { display: block; margin-top: 2px; color: rgba(255,255,255,.76); font-size: 11px; }
 
-.roma-section { padding: 84px 0; }
-.roma-section-head { display: flex; align-items: end; justify-content: space-between; gap: 22px; margin-bottom: 34px; }
+.roma-section { padding: 76px 0; }
+.roma-section-head { display: flex; align-items: end; justify-content: space-between; gap: 22px; margin-bottom: 30px; }
 .roma-section-head-centered { justify-content: center; text-align: center; }
 .roma-section-head > div > span,
 .roma-story-copy > span { color: var(--roma-red); font-size: 13px; }
@@ -227,25 +227,25 @@ button, input { font: inherit; }
 .roma-product-body strong { color: var(--roma-red); font-family: var(--font-latin), var(--font-body), sans-serif; }
 .roma-product-body a { font-weight: 900; }
 
-.roma-story { padding: 84px 0; background: #171717; color: #fff; }
-.roma-story-grid { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 56px; }
-.roma-story-visual { position: relative; min-height: 500px; }
+.roma-story { padding: 76px 0; background: #171717; color: #fff; }
+.roma-story-grid { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 48px; }
+.roma-story-visual { position: relative; min-height: 470px; }
 .roma-story-image { position: absolute; background-size: cover; background-position: center; border-radius: 28px; box-shadow: 0 36px 72px -38px rgba(0,0,0,.88); }
-.roma-story-image-main { width: 76%; height: 430px; right: 0; top: 24px; }
-.roma-story-image-small { width: 40%; height: 220px; left: 0; bottom: 16px; border: 8px solid #171717; }
-.roma-story-seal { position: absolute; left: 27%; top: 12px; width: 108px; height: 108px; display: grid; place-items: center; border-radius: 50%; text-align: center; background: var(--roma-red); color: #fff; font-family: var(--font-display), var(--font-body), sans-serif; font-size: 17px; line-height: 1.2; transform: rotate(-7deg); }
-.roma-story-copy p { margin: 18px 0 0; color: rgba(255,255,255,.74); line-height: 1.9; font-size: 15px; }
-.roma-story-points { margin: 24px 0; display: grid; gap: 10px; }
+.roma-story-image-main { width: 76%; height: 400px; right: 0; top: 20px; }
+.roma-story-image-small { width: 40%; height: 206px; left: 0; bottom: 12px; border: 8px solid #171717; }
+.roma-story-seal { position: absolute; left: 27%; top: 8px; width: 102px; height: 102px; display: grid; place-items: center; border-radius: 50%; text-align: center; background: var(--roma-red); color: #fff; font-family: var(--font-display), var(--font-body), sans-serif; font-size: 16px; line-height: 1.15; }
+.roma-story-copy p { margin: 18px 0 0; color: rgba(255,255,255,.72); line-height: 1.9; }
+.roma-story-points { margin: 26px 0; display: grid; gap: 11px; }
 .roma-story-points > div { display: flex; align-items: center; gap: 12px; padding-bottom: 11px; border-bottom: 1px solid rgba(255,255,255,.12); }
 .roma-story-points strong { color: var(--roma-red); font-family: var(--font-latin), sans-serif; }
 
-.roma-gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 190px; gap: 12px; }
+.roma-gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 180px; gap: 12px; }
 .roma-gallery-item { border-radius: 20px; background-size: cover; background-position: center; box-shadow: 0 18px 40px -28px rgba(0,0,0,.36); transition: transform .25s ease; }
 .roma-gallery-item:hover { transform: scale(1.015); }
 .roma-gallery-wide { grid-column: span 2; }
 .roma-gallery-tall { grid-row: span 2; }
 
-.roma-cta { position: relative; min-height: 470px; overflow: hidden; display: grid; place-items: center; color: #fff; }
+.roma-cta { position: relative; min-height: 430px; overflow: hidden; display: grid; place-items: center; color: #fff; }
 .roma-cta-shade { background: rgba(0,0,0,.64); }
 .roma-cta-content { position: relative; z-index: 2; max-width: 720px; text-align: center; }
 .roma-cta-content > span { color: #ffdbe2; font-size: 13px; }
@@ -253,14 +253,14 @@ button, input { font: inherit; }
 .roma-cta-content .roma-hero-actions { justify-content: center; }
 .roma-secondary-cta-light { background: rgba(255,255,255,.12); }
 
-.roma-footer { padding: 56px 0 18px; background: #111; color: #fff; }
-.roma-footer-grid { display: grid; grid-template-columns: 1.35fr repeat(3, 1fr); gap: 38px; }
+.roma-footer { padding: 50px 0 18px; background: #111; color: #fff; }
+.roma-footer-grid { display: grid; grid-template-columns: 1.35fr repeat(3, 1fr); gap: 34px; }
 .roma-brand-footer .roma-brand-copy small { color: rgba(255,255,255,.55); }
 .roma-footer > .roma-container > div:first-child p { max-width: 320px; color: rgba(255,255,255,.64); line-height: 1.8; }
 .roma-footer h4 { margin: 0 0 14px; color: #fff; font-size: 18px; }
 .roma-footer a,
 .roma-footer p { display: block; margin: 8px 0 0; color: rgba(255,255,255,.68); font-size: 13px; }
-.roma-footer-bottom { margin-top: 34px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.1); text-align: center; color: rgba(255,255,255,.5); font-size: 12px; }
+.roma-footer-bottom { margin-top: 30px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,.1); text-align: center; color: rgba(255,255,255,.5); font-size: 12px; }
 
 @media (max-width: 980px) {
   .roma-header-inner { grid-template-columns: auto 1fr auto; }
@@ -269,13 +269,13 @@ button, input { font: inherit; }
   .roma-hero-grid,
   .roma-story-grid { grid-template-columns: 1fr; }
   .roma-hero { min-height: auto; }
-  .roma-hero-grid { min-height: auto; padding: 64px 0 48px; }
+  .roma-hero-grid { min-height: auto; padding: 58px 0 42px; }
   .roma-hero-copy { text-align: center; margin-inline: auto; }
   .roma-hero-copy p { margin-inline: auto; }
   .roma-hero-actions,
   .roma-hero-meta { justify-content: center; }
-  .roma-hero-showcase { min-height: 460px; }
-  .roma-hero-main-plate { width: min(500px, 70vw); }
+  .roma-hero-showcase { min-height: 420px; }
+  .roma-hero-main-plate { width: min(470px, 68vw); }
   .roma-product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .roma-trust-grid { grid-template-columns: repeat(2, 1fr); }
   .roma-story-copy { text-align: center; }
@@ -286,79 +286,81 @@ button, input { font: inherit; }
 
 @media (max-width: 640px) {
   .roma-container { width: min(100% - 18px, 1180px); }
-  .roma-header-inner { min-height: 62px; gap: 8px; }
+  .roma-header-inner { min-height: 60px; gap: 8px; }
   .roma-brand-copy { display: none; }
-  .roma-brand-mark { width: 40px; height: 40px; font-size: 13px; }
+  .roma-brand-mark { width: 38px; height: 38px; font-size: 13px; }
   .roma-order-button { min-height: 38px; padding: 0 13px; font-size: 11px; }
   .roma-icon-link { display: none; }
   .roma-menu-button { width: 38px; height: 38px; }
 
-  .roma-hero-grid { padding: 34px 0 26px; gap: 10px; }
+  .roma-hero-grid { padding: 28px 0 20px; gap: 8px; }
   .roma-kicker { font-size: 10px; }
-  .roma-hero-copy h1 { margin-top: 10px; font-size: clamp(2.55rem, 12vw, 3.6rem); line-height: 1.02; }
-  .roma-hero-copy p { margin-top: 12px; font-size: 12px; line-height: 1.65; }
+  .roma-hero-copy h1 { margin-top: 8px; font-size: clamp(2.35rem, 11.5vw, 3.25rem); line-height: 1.03; }
+  .roma-hero-copy p { margin-top: 10px; font-size: 11.5px; line-height: 1.65; }
   .roma-primary-cta,
-  .roma-secondary-cta { min-height: 40px; padding: 0 14px; font-size: 11px; }
-  .roma-hero-actions { margin-top: 18px; gap: 8px; }
-  .roma-hero-meta { margin-top: 14px; gap: 8px 12px; font-size: 10px; }
-  .roma-hero-showcase { min-height: 280px; }
-  .roma-hero-main-plate { width: min(270px, 78vw); border-width: 7px; }
-  .roma-hero-orbit-one { width: 72px; height: 72px; left: 2px; top: 34px; border-width: 4px; }
-  .roma-hero-orbit-two { width: 58px; height: 58px; right: 4px; bottom: 34px; border-width: 4px; }
-  .roma-hero-badge { left: 6px; bottom: 14px; min-width: 96px; padding: 8px 9px; border-radius: 14px; }
+  .roma-secondary-cta { min-height: 39px; padding: 0 13px; font-size: 10.5px; }
+  .roma-hero-actions { margin-top: 16px; gap: 8px; }
+  .roma-hero-meta { margin-top: 12px; gap: 7px 10px; font-size: 9.5px; }
+  .roma-hero-showcase { min-height: 240px; }
+  .roma-hero-main-plate { width: min(235px, 72vw); border-width: 7px; }
+  .roma-hero-orbit-one { width: 60px; height: 60px; left: 2px; top: 28px; border-width: 4px; }
+  .roma-hero-orbit-two { width: 50px; height: 50px; right: 4px; bottom: 28px; border-width: 4px; }
+  .roma-hero-badge { left: 4px; bottom: 10px; min-width: 90px; padding: 7px 8px; border-radius: 13px; }
+  .roma-hero-badge span { font-size: 9px; }
 
   .roma-trust-grid { grid-template-columns: repeat(2, 1fr); min-height: auto; }
-  .roma-trust-grid > div { min-height: 74px; padding: 10px 6px; gap: 7px; }
-  .roma-trust-grid strong { font-size: 13px; }
-  .roma-trust-grid small { font-size: 9px; }
+  .roma-trust-grid > div { min-height: 66px; padding: 8px 5px; gap: 6px; }
+  .roma-trust-grid strong { font-size: 12px; }
+  .roma-trust-grid small { font-size: 8.5px; }
 
-  .roma-section { padding: 44px 0; }
-  .roma-section-head { align-items: center; text-align: center; flex-direction: column; margin-bottom: 20px; gap: 8px; }
+  .roma-section { padding: 36px 0; }
+  .roma-section-head { align-items: center; text-align: center; flex-direction: column; margin-bottom: 16px; gap: 6px; }
   .roma-section-head h2,
   .roma-story-copy h2,
-  .roma-cta-content h2 { font-size: clamp(2.1rem, 10vw, 3rem); line-height: 1.04; }
-  .roma-text-link { font-size: 11px; }
+  .roma-cta-content h2 { font-size: clamp(2rem, 9.5vw, 2.75rem); line-height: 1.05; }
+  .roma-text-link { font-size: 10.5px; }
 
-  .roma-product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-  .roma-product-card { border-radius: 16px; }
-  .roma-product-image { height: 142px; }
-  .roma-product-tag { top: 8px; right: 8px; padding: 5px 7px; font-size: 9px; }
-  .roma-product-image button { top: 8px; left: 8px; width: 30px; height: 30px; }
-  .roma-product-body { padding: 11px; }
-  .roma-product-body h3 { font-size: 16px; }
-  .roma-product-body p { min-height: 42px; margin-top: 6px; font-size: 9px; line-height: 1.55; }
-  .roma-product-body > div { margin-top: 10px; gap: 6px; font-size: 10px; }
+  .roma-product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+  .roma-product-card { border-radius: 15px; }
+  .roma-product-image { height: 132px; }
+  .roma-product-tag { top: 7px; right: 7px; padding: 4px 6px; font-size: 8.5px; }
+  .roma-product-image button { top: 7px; left: 7px; width: 28px; height: 28px; }
+  .roma-product-body { padding: 10px; }
+  .roma-product-body h3 { font-size: 15px; }
+  .roma-product-body p { min-height: 38px; margin-top: 5px; font-size: 8.5px; line-height: 1.5; }
+  .roma-product-body > div { margin-top: 9px; gap: 5px; font-size: 9.5px; }
 
-  .roma-story { padding: 44px 0; }
-  .roma-story-grid { gap: 20px; }
-  .roma-story-visual { min-height: 290px; }
-  .roma-story-image-main { width: 88%; height: 250px; top: 10px; }
-  .roma-story-image-small { width: 42%; height: 132px; bottom: 0; border-width: 5px; }
-  .roma-story-seal { width: 72px; height: 72px; font-size: 11px; left: 18%; top: 0; }
-  .roma-story-copy p { margin-top: 12px; font-size: 11px; line-height: 1.7; }
-  .roma-story-points { margin: 18px 0; gap: 8px; }
-  .roma-story-points > div { padding-bottom: 8px; font-size: 11px; }
+  .roma-story { padding: 36px 0; }
+  .roma-story-grid { gap: 16px; }
+  .roma-story-visual { min-height: 240px; }
+  .roma-story-image-main { width: 86%; height: 205px; top: 6px; }
+  .roma-story-image-small { width: 38%; height: 108px; bottom: 0; border-width: 4px; }
+  .roma-story-seal { width: 62px; height: 62px; font-size: 10px; left: 17%; top: -2px; }
+  .roma-story-copy p { margin-top: 10px; font-size: 10.5px; line-height: 1.65; }
+  .roma-story-points { margin: 14px 0; gap: 6px; }
+  .roma-story-points > div { padding-bottom: 6px; font-size: 10px; }
 
-  .roma-gallery-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 118px; gap: 7px; }
+  .roma-gallery-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 104px; gap: 6px; }
   .roma-gallery-wide { grid-column: span 2; }
-  .roma-gallery-item { border-radius: 14px; }
+  .roma-gallery-item { border-radius: 12px; }
 
-  .roma-cta { min-height: 340px; padding: 36px 0; }
-  .roma-cta-content p { font-size: 11px; line-height: 1.7; }
+  .roma-cta { min-height: 300px; padding: 30px 0; }
+  .roma-cta-content p { font-size: 10.5px; line-height: 1.65; }
 
-  .roma-footer { padding: 34px 0 14px; }
-  .roma-footer-grid { grid-template-columns: repeat(2, 1fr); gap: 20px 12px; }
+  .roma-footer { padding: 28px 0 12px; }
+  .roma-footer-grid { grid-template-columns: 1fr 1fr; gap: 16px 10px; }
   .roma-footer-grid > div:first-child { grid-column: 1 / -1; text-align: center; }
   .roma-brand-footer { justify-content: center; }
-  .roma-footer > .roma-container > div:first-child p { margin-inline: auto; font-size: 11px; }
-  .roma-footer h4 { font-size: 15px; }
+  .roma-footer > .roma-container > div:first-child p { margin-inline: auto; font-size: 10.5px; }
+  .roma-footer h4 { font-size: 14px; margin-bottom: 10px; }
   .roma-footer a,
-  .roma-footer p { font-size: 11px; }
+  .roma-footer p { font-size: 10px; margin-top: 6px; }
+  .roma-footer-bottom { margin-top: 22px; font-size: 10px; }
 }
 
 @media (max-width: 390px) {
   .roma-product-grid { grid-template-columns: 1fr; }
-  .roma-product-image { height: 210px; }
-  .roma-product-body h3 { font-size: 20px; }
-  .roma-product-body p { min-height: auto; font-size: 11px; }
+  .roma-product-image { height: 200px; }
+  .roma-product-body h3 { font-size: 19px; }
+  .roma-product-body p { min-height: auto; font-size: 10.5px; }
 }
