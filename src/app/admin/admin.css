@@ -455,18 +455,18 @@
 }
 
 .admin-v2-empty-state h2 {
-  margin: 10px 0 0;
+  margin: 10px 0 8px;
 }
 
 .admin-v2-empty-state p {
-  max-width: 620px;
+  margin: 0;
   color: #777;
-  line-height: 1.8;
+  max-width: 640px;
 }
 
 @media (max-width: 980px) {
   .admin-v2 {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1rr;
   }
 
   .admin-v2-sidebar {
@@ -475,11 +475,12 @@
   }
 
   .admin-v2-sidebar-nav {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .admin-v2-sidebar-footer {
-    grid-template-columns: 1fr 1fr;
+    margin-top: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -494,10 +495,12 @@
     flex-direction: column;
   }
 
-  .admin-v2-topbar-actions,
-  .admin-v2-primary,
-  .admin-v2-ghost {
+  .admin-v2-topbar-actions {
     width: 100%;
+  }
+
+  .admin-v2-topbar-actions button {
+    flex: 1;
   }
 
   .admin-v2-panel-grid,
@@ -510,18 +513,22 @@
     grid-template-columns: 1fr;
   }
 
-  .admin-v2-span-2,
-  .admin-v2-field-wide {
-    grid-column: auto;
+  .admin-v2-sidebar-nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .admin-v2-table-row {
-    grid-template-columns: 64px 1fr auto;
+    grid-template-columns: 56px minmax(0, 1fr) auto;
   }
 
   .admin-v2-table-row > b,
   .admin-v2-table-row > span,
   .admin-v2-table-row > button {
     grid-column: 2 / -1;
+  }
+
+  .admin-v2-thumb {
+    width: 56px;
+    height: 56px;
   }
 }
