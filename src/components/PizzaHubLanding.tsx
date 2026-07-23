@@ -35,6 +35,7 @@ export default async function PizzaHubLanding() {
 
   const deals = products.slice(0, 4);
   const primaryImage = products[0]?.image_url || visualImages[0];
+  const sideImage = deals[1]?.image_url || visualImages[1];
 
   return (
     <div className="fresh-pizza-shell">
@@ -54,7 +55,7 @@ export default async function PizzaHubLanding() {
 
       <header className="fresh-pizza-header">
         <div className="fresh-pizza-container fresh-pizza-header-inner">
-          <nav className="fresh-pizza-nav">
+          <nav className="fresh-pizza-nav fresh-pizza-nav-main">
             <a href="#home">الرئيسية</a>
             <a href="#categories">الأصناف</a>
             <a href="#deals">العروض</a>
@@ -79,8 +80,13 @@ export default async function PizzaHubLanding() {
         <section id="home" className="fresh-pizza-hero">
           <div className="fresh-pizza-container fresh-pizza-hero-inner">
             <div className="fresh-pizza-orbit fresh-pizza-orbit-left" aria-hidden="true">
-              <div className="fresh-pizza-orbit-card fresh-pizza-orbit-large" style={{ backgroundImage: `url(${deals[1]?.image_url || visualImages[1]})` }} />
+              <div className="fresh-pizza-orbit-card fresh-pizza-orbit-large" style={{ backgroundImage: `url(${sideImage})` }} />
               <div className="fresh-pizza-orbit-card fresh-pizza-orbit-small" style={{ backgroundImage: `url(${deals[2]?.image_url || visualImages[2]})` }} />
+            </div>
+
+            <div className="fresh-pizza-centerpiece">
+              <div className="fresh-pizza-main-disc" style={{ backgroundImage: `url(${primaryImage})` }} />
+              <div className="fresh-pizza-cola">COLA</div>
             </div>
 
             <div className="fresh-pizza-hero-copy">
@@ -91,11 +97,6 @@ export default async function PizzaHubLanding() {
                 <Link href="/menu" className="fresh-pizza-primary-cta">شاهد المنيو</Link>
                 <a href={`https://wa.me/${settings.whatsapp}`} className="fresh-pizza-secondary-cta">اطلب الآن</a>
               </div>
-            </div>
-
-            <div className="fresh-pizza-centerpiece">
-              <div className="fresh-pizza-main-disc" style={{ backgroundImage: `url(${primaryImage})` }} />
-              <div className="fresh-pizza-cola">COLA</div>
             </div>
 
             <div className="fresh-pizza-orbit fresh-pizza-orbit-right" aria-hidden="true">
