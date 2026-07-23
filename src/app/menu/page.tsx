@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowLeft, ShoppingBag } from "lucide-react";
 import MenuBrowser from "@/components/MenuBrowser";
 import { getCategoriesWithProducts, getSiteSettings } from "@/lib/queries";
+import "./menu.css";
 
 export const metadata: Metadata = {
   title: "المنيو | De Roma",
