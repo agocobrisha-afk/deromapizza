@@ -20,7 +20,7 @@ const categories = [
   { label: "مشروبات", icon: CupSoda },
 ];
 
-const visualImages = [
+const fallbackImages = [
   "/images/table-two-pizzas.jpg",
   "/images/pizza-slice-pull.jpg",
   "/images/table-two-pizzas.jpg",
@@ -34,8 +34,8 @@ export default async function PizzaHubLanding() {
   ]);
 
   const deals = products.slice(0, 4);
-  const primaryImage = products[0]?.image_url || visualImages[0];
-  const sideImage = deals[1]?.image_url || visualImages[1];
+  const imageAt = (index: number) => deals[index]?.image_url || fallbackImages[index % fallbackImages.length];
+  const primaryImage = imageAt(0);
 
   return (
     <div className="fresh-pizza-shell">
@@ -77,31 +77,25 @@ export default async function PizzaHubLanding() {
       </header>
 
       <main>
-        <section id="home" className="fresh-pizza-hero">
-          <div className="fresh-pizza-container fresh-pizza-hero-inner">
-            <div className="fresh-pizza-orbit fresh-pizza-orbit-left" aria-hidden="true">
-              <div className="fresh-pizza-orbit-card fresh-pizza-orbit-large" style={{ backgroundImage: `url(${sideImage})` }} />
-              <div className="fresh-pizza-orbit-card fresh-pizza-orbit-small" style={{ backgroundImage: `url(${deals[2]?.image_url || visualImages[2]})` }} />
-            </div>
+        <section id="home" className="fresh-pizza-hero fresh-pizza-hero-poster">
+          <div className="fresh-pizza-container fresh-pizza-hero-poster-inner">
+            <div className="fresh-pizza-floating-plate fresh-pizza-floating-plate-one" style={{ backgroundImage: `url(${imageAt(1)})` }} />
+            <div className="fresh-pizza-floating-plate fresh-pizza-floating-plate-two" style={{ backgroundImage: `url(${imageAt(2)})` }} />
+            <div className="fresh-pizza-floating-fries" aria-hidden="true"><span>FRIES</span></div>
+            <div className="fresh-pizza-floating-cola" aria-hidden="true"><span>COLA</span></div>
 
-            <div className="fresh-pizza-centerpiece">
-              <div className="fresh-pizza-main-disc" style={{ backgroundImage: `url(${primaryImage})` }} />
-              <div className="fresh-pizza-cola">COLA</div>
-            </div>
-
-            <div className="fresh-pizza-hero-copy">
-              <span>New Festive</span>
-              <h1>نكهات<br />تصنع الفرق</h1>
-              <p>{settings.tagline || "بيتزا ومعجنات بطابع إيطالي ومذاق غني في كل طلب."}</p>
-              <div className="fresh-pizza-hero-actions">
-                <Link href="/menu" className="fresh-pizza-primary-cta">شاهد المنيو</Link>
-                <a href={`https://wa.me/${settings.whatsapp}`} className="fresh-pizza-secondary-cta">اطلب الآن</a>
+            <div className="fresh-pizza-hero-stage">
+              <div className="fresh-pizza-hero-copy fresh-pizza-hero-copy-poster">
+                <span>New Festive</span>
+                <h1>نكهات تصنع الفرق</h1>
+                <p>{settings.tagline || "بيتزا ومعجنات بطابع إيطالي ومذاق غني في كل طلب."}</p>
+                <div className="fresh-pizza-hero-actions">
+                  <Link href="/menu" className="fresh-pizza-primary-cta">شاهد المنيو</Link>
+                  <a href={`https://wa.me/${settings.whatsapp}`} className="fresh-pizza-secondary-cta">اطلب الآن</a>
+                </div>
               </div>
-            </div>
 
-            <div className="fresh-pizza-orbit fresh-pizza-orbit-right" aria-hidden="true">
-              <div className="fresh-pizza-orbit-card fresh-pizza-orbit-large" style={{ backgroundImage: `url(${deals[0]?.image_url || visualImages[0]})` }} />
-              <div className="fresh-pizza-fries">FRIES</div>
+              <div className="fresh-pizza-main-disc fresh-pizza-main-disc-poster" style={{ backgroundImage: `url(${primaryImage})` }} />
             </div>
           </div>
         </section>
@@ -117,20 +111,20 @@ export default async function PizzaHubLanding() {
           </div>
         </section>
 
-        <section id="deals" className="fresh-pizza-deals-section">
+        <section id="deals" className="fresh-pizza-deals-section fresh-pizza-deals-poster">
           <div className="fresh-pizza-container">
             <div className="fresh-pizza-section-heading">
               <span>De Roma</span>
               <h2>عرض اليوم</h2>
             </div>
 
-            <div className="fresh-pizza-deals-layout">
+            <div className="fresh-pizza-deals-layout fresh-pizza-deals-layout-poster">
               <div className="fresh-pizza-deals-small-grid">
                 {deals.map((product, index) => (
                   <article
                     key={product.id}
-                    className="fresh-pizza-deal-card"
-                    style={{ backgroundImage: `url(${product.image_url || visualImages[index]})` }}
+                    className="fresh-pizza-deal-card fresh-pizza-deal-card-poster"
+                    style={{ backgroundImage: `url(${product.image_url || fallbackImages[index]})` }}
                   >
                     <div className="fresh-pizza-deal-overlay" />
                     <div className="fresh-pizza-deal-copy">
@@ -143,7 +137,7 @@ export default async function PizzaHubLanding() {
                 ))}
               </div>
 
-              <article className="fresh-pizza-jumbo-deal" style={{ backgroundImage: `url(${primaryImage})` }}>
+              <article className="fresh-pizza-jumbo-deal fresh-pizza-jumbo-deal-poster" style={{ backgroundImage: `url(${primaryImage})` }}>
                 <div className="fresh-pizza-deal-overlay fresh-pizza-deal-overlay-strong" />
                 <div className="fresh-pizza-jumbo-copy">
                   <span>Jumbo Deal</span>
@@ -156,8 +150,8 @@ export default async function PizzaHubLanding() {
           </div>
         </section>
 
-        <section id="subscribe" className="fresh-pizza-subscribe">
-          <div className="fresh-pizza-container fresh-pizza-subscribe-inner">
+        <section id="subscribe" className="fresh-pizza-subscribe fresh-pizza-subscribe-poster">
+          <div className="fresh-pizza-container fresh-pizza-subscribe-inner fresh-pizza-subscribe-inner-poster">
             <div className="fresh-pizza-subscribe-copy">
               <span>Subscribe</span>
               <h2>اشترك الآن</h2>
@@ -167,17 +161,17 @@ export default async function PizzaHubLanding() {
                 <button type="button">اشترك</button>
               </div>
             </div>
-            <div className="fresh-pizza-subscribe-art" aria-hidden="true">
-              <div className="fresh-pizza-subscribe-disc" style={{ backgroundImage: `url(${primaryImage})` }} />
+            <div className="fresh-pizza-subscribe-art fresh-pizza-subscribe-art-poster" aria-hidden="true">
+              <div className="fresh-pizza-subscribe-disc fresh-pizza-subscribe-disc-poster" style={{ backgroundImage: `url(${primaryImage})` }} />
               <div className="fresh-pizza-subscribe-cup">COLA</div>
               <div className="fresh-pizza-tomato" />
             </div>
           </div>
         </section>
 
-        <section id="app" className="fresh-pizza-app">
-          <div className="fresh-pizza-container fresh-pizza-app-inner">
-            <div className="fresh-pizza-phone">
+        <section id="app" className="fresh-pizza-app fresh-pizza-app-poster">
+          <div className="fresh-pizza-container fresh-pizza-app-inner fresh-pizza-app-inner-poster">
+            <div className="fresh-pizza-phone fresh-pizza-phone-poster">
               <div className="fresh-pizza-phone-notch" />
               <div className="fresh-pizza-phone-screen">
                 <div className="fresh-pizza-phone-logo">DR</div>
@@ -198,7 +192,7 @@ export default async function PizzaHubLanding() {
         </section>
       </main>
 
-      <footer className="fresh-pizza-footer">
+      <footer className="fresh-pizza-footer fresh-pizza-footer-poster">
         <div className="fresh-pizza-container fresh-pizza-footer-grid">
           <div>
             <h3>{settings.restaurant_name}</h3>
