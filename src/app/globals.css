@@ -6,7 +6,7 @@
   --roma-ink: #171717;
   --roma-muted: #6f6966;
   --roma-cream: #fffaf7;
-  --roma-line: rgba(23,23,23,.1);
+  --roma-line: rgba(23, 23, 23, 0.1);
   --font-body: var(--font-cairo);
   --font-display: var(--font-changa);
   --font-latin: var(--font-jakarta);
@@ -23,14 +23,13 @@ body {
 }
 a { color: inherit; text-decoration: none; }
 button, input { font: inherit; }
-img { max-width: 100%; display: block; }
 
 .roma-shell {
   min-height: 100vh;
   background:
-    linear-gradient(rgba(255,255,255,.97), rgba(255,255,255,.97)),
-    repeating-linear-gradient(0deg, rgba(155,126,112,.08) 0 1px, transparent 1px 34px),
-    repeating-linear-gradient(90deg, rgba(155,126,112,.06) 0 1px, transparent 1px 34px);
+    linear-gradient(rgba(255,255,255,.975), rgba(255,255,255,.975)),
+    repeating-linear-gradient(0deg, rgba(155,126,112,.07) 0 1px, transparent 1px 34px),
+    repeating-linear-gradient(90deg, rgba(155,126,112,.05) 0 1px, transparent 1px 34px);
 }
 
 .roma-container {
@@ -38,76 +37,32 @@ img { max-width: 100%; display: block; }
   margin-inline: auto;
 }
 
-.roma-topbar {
-  background: #fff;
-  border-bottom: 1px solid #eee6e1;
-  color: #817975;
-  font-size: 12px;
-}
-.roma-topbar-inner {
-  min-height: 34px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-}
-.roma-topbar-group {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
-.roma-topbar-group span {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-.roma-social-badge {
-  width: 20px;
-  height: 20px;
-  display: inline-grid;
-  place-items: center;
-  border-radius: 50%;
-  background: #f3ece9;
-  color: var(--roma-red);
-  font-family: var(--font-latin), sans-serif;
-  font-weight: 900;
-}
-
 .roma-header {
   position: sticky;
   top: 0;
-  z-index: 50;
+  z-index: 70;
   background: rgba(255,255,255,.96);
   border-bottom: 1px solid #eee6e1;
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(14px);
 }
+
 .roma-header-inner {
-  min-height: 84px;
+  min-height: 82px;
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 28px;
-}
-.roma-nav {
-  display: flex;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 26px;
-  font-size: 13px;
-  font-weight: 800;
 }
-.roma-nav-end { justify-content: flex-end; }
-.roma-nav a:hover { color: var(--roma-red); }
-.roma-logo {
-  min-width: 108px;
-  display: grid;
-  justify-items: center;
-  gap: 5px;
-  font-size: 12px;
-  font-weight: 900;
+
+.roma-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
 }
-.roma-logo-mark {
-  width: 58px;
-  height: 58px;
+
+.roma-brand-mark {
+  width: 52px;
+  height: 52px;
   display: grid;
   place-items: center;
   border-radius: 50%;
@@ -115,14 +70,84 @@ img { max-width: 100%; display: block; }
   color: #fff;
   font-family: var(--font-latin), sans-serif;
   font-weight: 900;
-  font-size: 19px;
+  font-size: 17px;
   box-shadow: 0 14px 30px -18px rgba(217,17,50,.95);
 }
-.roma-cart-link {
+
+.roma-brand-copy {
+  display: grid;
+  gap: 1px;
+}
+
+.roma-brand-copy strong {
+  font-family: var(--font-latin), sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.roma-brand-copy small {
+  color: var(--roma-muted);
+  font-size: 10px;
+  letter-spacing: .02em;
+}
+
+.roma-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.roma-nav a:hover { color: var(--roma-red); }
+
+.roma-header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.roma-icon-link,
+.roma-menu-button {
+  width: 42px;
+  height: 42px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid #ece4df;
+  background: #fff;
+  color: var(--roma-ink);
+}
+
+.roma-menu-button { display: none; }
+
+.roma-order-button,
+.roma-primary-cta,
+.roma-secondary-cta {
+  min-height: 46px;
+  padding: 0 22px;
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  color: var(--roma-red);
+  justify-content: center;
+  gap: 8px;
+  border-radius: 999px;
+  font-weight: 900;
+}
+
+.roma-order-button,
+.roma-primary-cta {
+  background: var(--roma-red);
+  color: #fff;
+  box-shadow: 0 16px 30px -20px rgba(217,17,50,.9);
+}
+
+.roma-secondary-cta {
+  border: 1px solid rgba(255,255,255,.38);
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  backdrop-filter: blur(8px);
 }
 
 .roma-hero {
@@ -132,18 +157,30 @@ img { max-width: 100%; display: block; }
   display: flex;
   align-items: center;
   color: #fff;
-  background-size: cover;
-  background-position: center;
 }
-.roma-hero::before {
-  content: "";
+
+.roma-hero-bg,
+.roma-hero-shade,
+.roma-cta-bg,
+.roma-cta-shade {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(90deg, rgba(0,0,0,.8), rgba(0,0,0,.35) 46%, rgba(0,0,0,.1)),
-    linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.45));
 }
-.roma-hero-inner {
+
+.roma-hero-bg,
+.roma-cta-bg {
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.02);
+}
+
+.roma-hero-shade {
+  background:
+    linear-gradient(90deg, rgba(0,0,0,.82), rgba(0,0,0,.5) 44%, rgba(0,0,0,.12)),
+    linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.48));
+}
+
+.roma-hero-grid {
   position: relative;
   z-index: 2;
   min-height: 720px;
@@ -152,80 +189,83 @@ img { max-width: 100%; display: block; }
   align-items: center;
   gap: 40px;
 }
+
 .roma-hero-copy {
-  max-width: 620px;
+  max-width: 630px;
 }
+
 .roma-kicker,
-.roma-section-kicker,
-.roma-card-kicker,
-.roma-story-kicker,
-.roma-cta-kicker {
+.roma-section-head > div > span,
+.roma-story-copy > span,
+.roma-cta-content > span {
   font-family: var(--font-latin), sans-serif;
-  letter-spacing: .13em;
+  letter-spacing: .11em;
   text-transform: uppercase;
   font-weight: 800;
 }
+
 .roma-kicker {
-  display: block;
-  margin-bottom: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   color: #ffdbe2;
-  font-size: 15px;
+  font-size: 14px;
 }
+
 .roma-hero-copy h1,
-.roma-section-heading h2,
+.roma-section-head h2,
 .roma-story-copy h2,
-.roma-cta-copy h2,
-.roma-footer h3,
+.roma-cta-content h2,
+.roma-product-body h3,
 .roma-footer h4 {
   font-family: var(--font-display), var(--font-body), sans-serif;
 }
+
 .roma-hero-copy h1 {
-  margin: 0;
-  max-width: 700px;
-  font-size: clamp(4.5rem, 8vw, 8rem);
-  line-height: .9;
+  margin: 16px 0 0;
+  max-width: 720px;
+  font-size: clamp(4rem, 7vw, 7.2rem);
+  line-height: .94;
   font-weight: 700;
-  letter-spacing: -.025em;
+  letter-spacing: -.02em;
 }
+
 .roma-hero-copy p {
   max-width: 560px;
-  margin: 22px 0 0;
+  margin: 20px 0 0;
   color: rgba(255,255,255,.84);
   font-size: 18px;
   line-height: 1.9;
 }
+
 .roma-hero-actions {
-  margin-top: 28px;
+  margin-top: 26px;
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
 }
-.roma-primary-btn,
-.roma-secondary-btn {
-  min-height: 50px;
-  padding: 0 26px;
+
+.roma-hero-meta {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  color: rgba(255,255,255,.82);
+  font-size: 13px;
+}
+
+.roma-hero-meta span {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  border-radius: 999px;
-  font-weight: 900;
+  gap: 7px;
 }
-.roma-primary-btn {
-  background: var(--roma-red);
-  color: #fff;
-  box-shadow: 0 18px 34px -20px rgba(217,17,50,.95);
-}
-.roma-secondary-btn {
-  border: 1px solid rgba(255,255,255,.45);
-  background: rgba(255,255,255,.08);
-  color: #fff;
-  backdrop-filter: blur(8px);
-}
-.roma-hero-plate {
+
+.roma-hero-showcase {
   position: relative;
-  min-height: 520px;
+  min-height: 540px;
 }
-.roma-hero-plate-main {
+
+.roma-hero-main-plate {
   position: absolute;
   width: min(520px, 42vw);
   aspect-ratio: 1;
@@ -236,123 +276,125 @@ img { max-width: 100%; display: block; }
   border: 13px solid rgba(255,255,255,.95);
   background-size: cover;
   background-position: center;
-  box-shadow: 0 50px 90px -44px rgba(0,0,0,.9);
+  box-shadow: 0 52px 92px -42px rgba(0,0,0,.92);
 }
-.roma-floating-card {
+
+.roma-hero-orbit {
   position: absolute;
-  overflow: hidden;
-  border-radius: 26px;
-  border: 7px solid rgba(255,255,255,.9);
+  border-radius: 24px;
+  border: 7px solid rgba(255,255,255,.92);
   background-size: cover;
   background-position: center;
-  box-shadow: 0 26px 55px -30px rgba(0,0,0,.8);
+  box-shadow: 0 28px 58px -30px rgba(0,0,0,.86);
 }
-.roma-floating-card-one {
+
+.roma-hero-orbit-one {
   width: 160px;
   height: 160px;
-  left: -20px;
-  top: 70px;
+  left: -12px;
+  top: 60px;
   transform: rotate(-8deg);
 }
-.roma-floating-card-two {
+
+.roma-hero-orbit-two {
   width: 118px;
   height: 118px;
-  right: -10px;
-  bottom: 80px;
-  transform: rotate(8deg);
-}
-.roma-floating-cola,
-.roma-floating-fries {
-  position: absolute;
-  display: grid;
-  place-items: center;
-  font-family: var(--font-latin), sans-serif;
-  font-size: 10px;
-  font-weight: 900;
-  letter-spacing: .14em;
-  box-shadow: 0 22px 38px -24px rgba(0,0,0,.7);
-}
-.roma-floating-cola {
-  width: 82px;
-  height: 148px;
-  left: 38px;
-  bottom: 44px;
-  border-radius: 18px 18px 28px 28px;
-  background: linear-gradient(180deg, #5a3027, #1a0e0d);
-  border: 4px solid rgba(255,255,255,.9);
-  transform: rotate(-7deg);
-}
-.roma-floating-fries {
-  width: 122px;
-  height: 122px;
-  right: 6px;
-  top: 58px;
-  border-radius: 28px;
-  background: repeating-linear-gradient(100deg, #f8d35f 0 12px, #e8a625 12px 20px);
-  color: #7a1d13;
+  right: -2px;
+  bottom: 74px;
   transform: rotate(8deg);
 }
 
-.roma-feature-band {
+.roma-hero-badge {
+  position: absolute;
+  left: 40px;
+  bottom: 54px;
+  min-width: 138px;
+  padding: 12px 14px;
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  gap: 2px 8px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.94);
+  color: var(--roma-ink);
+  box-shadow: 0 22px 46px -26px rgba(0,0,0,.8);
+}
+
+.roma-hero-badge svg { color: #ffb400; }
+.roma-hero-badge strong { font-family: var(--font-latin), sans-serif; }
+.roma-hero-badge span { grid-column: 1 / -1; color: var(--roma-muted); font-size: 11px; }
+
+.roma-trust-bar {
   background: var(--roma-red);
   color: #fff;
-  box-shadow: 0 22px 45px -32px rgba(217,17,50,.85);
+  box-shadow: 0 22px 44px -32px rgba(217,17,50,.85);
 }
-.roma-feature-grid {
-  min-height: 126px;
+
+.roma-trust-grid {
+  min-height: 118px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 }
-.roma-feature-item {
+
+.roma-trust-grid > div {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 13px;
+  gap: 12px;
   padding: 18px;
   border-inline-start: 1px solid rgba(255,255,255,.18);
 }
-.roma-feature-item:last-child { border-inline-end: 1px solid rgba(255,255,255,.18); }
-.roma-feature-item strong {
-  display: block;
-  font-family: var(--font-display), var(--font-body), sans-serif;
-  font-size: 20px;
-}
-.roma-feature-item span {
-  display: block;
-  margin-top: 3px;
-  color: rgba(255,255,255,.78);
-  font-size: 12px;
-}
+
+.roma-trust-grid > div:last-child { border-inline-end: 1px solid rgba(255,255,255,.18); }
+.roma-trust-grid strong { display: block; font-family: var(--font-display), var(--font-body), sans-serif; font-size: 19px; }
+.roma-trust-grid small { display: block; margin-top: 2px; color: rgba(255,255,255,.76); font-size: 11px; }
 
 .roma-section {
   padding: 92px 0;
 }
-.roma-section-heading {
-  text-align: center;
+
+.roma-section-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 22px;
   margin-bottom: 38px;
 }
-.roma-section-kicker {
-  color: var(--roma-red);
-  font-size: 14px;
-}
-.roma-section-heading h2 {
-  margin: 8px 0 0;
-  font-size: clamp(3rem, 6vw, 5.4rem);
-  line-height: .95;
-  font-weight: 650;
-}
-.roma-section-heading p {
-  max-width: 640px;
-  margin: 16px auto 0;
-  color: var(--roma-muted);
-  line-height: 1.9;
+
+.roma-section-head-centered {
+  justify-content: center;
+  text-align: center;
 }
 
-.roma-best-grid {
+.roma-section-head > div > span,
+.roma-story-copy > span {
+  color: var(--roma-red);
+  font-size: 13px;
+}
+
+.roma-section-head h2,
+.roma-story-copy h2,
+.roma-cta-content h2 {
+  margin: 8px 0 0;
+  font-size: clamp(3rem, 5.5vw, 5.2rem);
+  line-height: .98;
+  font-weight: 650;
+}
+
+.roma-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--roma-red);
+  font-weight: 900;
+}
+
+.roma-product-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 18px;
 }
+
 .roma-product-card {
   overflow: hidden;
   border-radius: 22px;
@@ -360,276 +402,257 @@ img { max-width: 100%; display: block; }
   border: 1px solid #eee7e3;
   box-shadow: 0 22px 50px -36px rgba(0,0,0,.35);
 }
+
 .roma-product-image {
+  position: relative;
   height: 240px;
   background-size: cover;
   background-position: center;
 }
-.roma-product-body {
-  padding: 20px;
-}
-.roma-card-kicker {
-  color: var(--roma-red);
-  font-size: 11px;
-}
-.roma-product-body h3 {
-  margin: 7px 0 0;
-  font-family: var(--font-display), var(--font-body), sans-serif;
-  font-size: 25px;
-  line-height: 1.15;
-}
-.roma-product-body p {
-  min-height: 52px;
-  margin: 10px 0 0;
-  color: var(--roma-muted);
-  font-size: 13px;
-  line-height: 1.8;
-}
-.roma-product-footer {
-  margin-top: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-.roma-product-price {
-  color: var(--roma-red);
-  font-weight: 900;
-}
-.roma-product-link {
-  min-height: 38px;
-  padding: 0 15px;
-  display: inline-flex;
-  align-items: center;
+
+.roma-product-tag {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  padding: 7px 10px;
   border-radius: 999px;
-  background: var(--roma-ink);
+  background: var(--roma-red);
   color: #fff;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 900;
 }
 
+.roma-product-image button {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,.92);
+  color: var(--roma-ink);
+}
+
+.roma-product-body { padding: 20px; }
+.roma-product-body h3 { margin: 0; font-size: 25px; line-height: 1.15; }
+.roma-product-body p { min-height: 52px; margin: 10px 0 0; color: var(--roma-muted); line-height: 1.7; font-size: 13px; }
+.roma-product-body > div { margin-top: 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.roma-product-body strong { color: var(--roma-red); font-family: var(--font-latin), var(--font-body), sans-serif; }
+.roma-product-body a { font-weight: 900; }
+
 .roma-story {
-  padding: 100px 0;
+  padding: 94px 0;
   background: #171717;
   color: #fff;
 }
-.roma-story-inner {
+
+.roma-story-grid {
   display: grid;
   grid-template-columns: 1.05fr .95fr;
   align-items: center;
-  gap: 56px;
+  gap: 64px;
 }
+
+.roma-story-visual {
+  position: relative;
+  min-height: 560px;
+}
+
 .roma-story-image {
-  min-height: 520px;
-  border-radius: 30px;
+  position: absolute;
   background-size: cover;
   background-position: center;
-  box-shadow: 0 30px 70px -42px rgba(0,0,0,.75);
+  border-radius: 28px;
+  box-shadow: 0 36px 72px -38px rgba(0,0,0,.88);
 }
-.roma-story-kicker {
-  color: #ff8fa0;
-  font-size: 14px;
+
+.roma-story-image-main {
+  width: 78%;
+  height: 470px;
+  right: 0;
+  top: 28px;
 }
-.roma-story-copy h2 {
-  margin: 10px 0 0;
-  font-size: clamp(3.2rem, 6vw, 5.8rem);
-  line-height: .95;
-  font-weight: 650;
+
+.roma-story-image-small {
+  width: 42%;
+  height: 250px;
+  left: 0;
+  bottom: 18px;
+  border: 8px solid #171717;
 }
+
+.roma-story-seal {
+  position: absolute;
+  left: 28%;
+  top: 14px;
+  width: 118px;
+  height: 118px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  text-align: center;
+  background: var(--roma-red);
+  color: #fff;
+  font-family: var(--font-display), var(--font-body), sans-serif;
+  font-size: 18px;
+  line-height: 1.2;
+  transform: rotate(-7deg);
+}
+
 .roma-story-copy p {
   margin: 20px 0 0;
-  color: rgba(255,255,255,.72);
-  font-size: 17px;
-  line-height: 2;
+  color: rgba(255,255,255,.74);
+  line-height: 1.95;
+  font-size: 16px;
 }
+
 .roma-story-points {
-  margin-top: 28px;
+  margin: 28px 0;
   display: grid;
-  gap: 14px;
-}
-.roma-story-point {
-  display: flex;
-  align-items: flex-start;
   gap: 12px;
 }
-.roma-story-point b {
-  min-width: 36px;
-  color: #ff8fa0;
-  font-family: var(--font-latin), sans-serif;
+
+.roma-story-points > div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,.12);
 }
-.roma-story-point span {
-  color: rgba(255,255,255,.78);
+
+.roma-story-points strong {
+  color: var(--roma-red);
+  font-family: var(--font-latin), sans-serif;
 }
 
 .roma-gallery-grid {
   display: grid;
-  grid-template-columns: 1.15fr .85fr .85fr;
-  grid-template-rows: 250px 250px;
-  gap: 16px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 210px;
+  gap: 14px;
 }
+
 .roma-gallery-item {
-  border-radius: 22px;
+  border-radius: 20px;
   background-size: cover;
   background-position: center;
-  box-shadow: 0 20px 45px -32px rgba(0,0,0,.35);
+  box-shadow: 0 18px 40px -28px rgba(0,0,0,.36);
 }
-.roma-gallery-item:first-child { grid-row: 1 / 3; }
-.roma-gallery-item:nth-child(4) { grid-column: 2 / 4; }
+
+.roma-gallery-wide { grid-column: span 2; }
+.roma-gallery-tall { grid-row: span 2; }
 
 .roma-cta {
   position: relative;
+  min-height: 520px;
   overflow: hidden;
-  padding: 110px 0;
+  display: grid;
+  place-items: center;
   color: #fff;
-  background-size: cover;
-  background-position: center;
 }
-.roma-cta::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, rgba(0,0,0,.86), rgba(0,0,0,.42));
-}
-.roma-cta-inner {
+
+.roma-cta-shade { background: rgba(0,0,0,.64); }
+
+.roma-cta-content {
   position: relative;
   z-index: 2;
+  max-width: 760px;
+  text-align: center;
 }
-.roma-cta-copy {
-  max-width: 720px;
-}
-.roma-cta-kicker {
-  color: #ffdbe2;
-  font-size: 14px;
-}
-.roma-cta-copy h2 {
-  margin: 10px 0 0;
-  font-size: clamp(3.8rem, 7vw, 7rem);
-  line-height: .92;
-  font-weight: 650;
-}
-.roma-cta-copy p {
-  max-width: 580px;
-  margin: 18px 0 0;
-  color: rgba(255,255,255,.8);
-  font-size: 17px;
-  line-height: 1.9;
-}
-.roma-cta-actions {
-  margin-top: 26px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
+
+.roma-cta-content > span { color: #ffdbe2; font-size: 13px; }
+.roma-cta-content p { margin: 16px auto 0; max-width: 560px; color: rgba(255,255,255,.82); font-size: 17px; }
+.roma-cta-content .roma-hero-actions { justify-content: center; }
+.roma-secondary-cta-light { background: rgba(255,255,255,.12); }
 
 .roma-footer {
+  padding: 64px 0 20px;
   background: #111;
   color: #fff;
-  padding: 58px 0 20px;
-}
-.roma-footer-grid {
-  display: grid;
-  grid-template-columns: 1.4fr repeat(3, .8fr);
-  gap: 34px;
-}
-.roma-footer h3,
-.roma-footer h4 { margin: 0; }
-.roma-footer h3 { font-size: 31px; }
-.roma-footer h4 { color: #ff8fa0; font-size: 18px; }
-.roma-footer p,
-.roma-footer a {
-  display: block;
-  margin-top: 10px;
-  color: rgba(255,255,255,.66);
-  line-height: 1.8;
-}
-.roma-copyright {
-  width: min(1180px, calc(100% - 32px));
-  margin: 38px auto 0;
-  padding-top: 18px;
-  border-top: 1px solid rgba(255,255,255,.1);
-  text-align: center;
-  color: rgba(255,255,255,.42);
-  font-size: 12px;
 }
 
+.roma-footer-grid {
+  display: grid;
+  grid-template-columns: 1.35fr repeat(3, 1fr);
+  gap: 44px;
+}
+
+.roma-brand-footer .roma-brand-copy small { color: rgba(255,255,255,.55); }
+.roma-footer > .roma-container > div:first-child p { max-width: 320px; color: rgba(255,255,255,.64); line-height: 1.8; }
+.roma-footer h4 { margin: 0 0 14px; color: #fff; font-size: 18px; }
+.roma-footer a,
+.roma-footer p { display: block; margin: 8px 0 0; color: rgba(255,255,255,.68); font-size: 13px; }
+.roma-footer-bottom { margin-top: 38px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.1); text-align: center; color: rgba(255,255,255,.5); font-size: 12px; }
+
 @media (max-width: 980px) {
-  .roma-header-inner { grid-template-columns: 1fr auto; }
-  .roma-nav-main { display: none; }
-  .roma-nav-end { justify-content: flex-start; }
-  .roma-hero-inner { grid-template-columns: 1fr; min-height: auto; padding: 78px 0 48px; }
+  .roma-header-inner { grid-template-columns: auto 1fr auto; }
+  .roma-nav { display: none; }
+  .roma-menu-button { display: inline-grid; }
+  .roma-hero-grid,
+  .roma-story-grid { grid-template-columns: 1fr; }
+  .roma-hero { min-height: auto; }
+  .roma-hero-grid { min-height: auto; padding: 70px 0 56px; }
   .roma-hero-copy { text-align: center; margin-inline: auto; }
   .roma-hero-copy p { margin-inline: auto; }
-  .roma-hero-actions { justify-content: center; }
-  .roma-hero-plate { min-height: 500px; }
-  .roma-hero-plate-main { width: min(500px, 72vw); }
-  .roma-feature-grid { grid-template-columns: repeat(2, 1fr); }
-  .roma-best-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .roma-story-inner { grid-template-columns: 1fr; }
-  .roma-story-image { min-height: 440px; }
-  .roma-gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 260px 220px 220px; }
-  .roma-gallery-item:first-child { grid-row: auto; grid-column: 1 / 3; }
-  .roma-gallery-item:nth-child(4) { grid-column: 1 / 3; }
+  .roma-hero-actions,
+  .roma-hero-meta { justify-content: center; }
+  .roma-hero-showcase { min-height: 500px; }
+  .roma-hero-main-plate { width: min(520px, 72vw); }
+  .roma-product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .roma-trust-grid { grid-template-columns: repeat(2, 1fr); }
+  .roma-story-copy { text-align: center; }
+  .roma-story-copy .roma-primary-cta { margin-inline: auto; }
+  .roma-gallery-grid { grid-template-columns: repeat(2, 1fr); }
   .roma-footer-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 640px) {
   .roma-container { width: min(100% - 20px, 1180px); }
-  .roma-topbar { display: none; }
-  .roma-header-inner { min-height: 64px; grid-template-columns: auto 1fr; gap: 10px; }
-  .roma-logo { min-width: 72px; justify-self: end; }
-  .roma-logo-mark { width: 42px; height: 42px; font-size: 14px; }
-  .roma-nav-end { gap: 12px; font-size: 11px; }
-  .roma-nav-end a:not(.roma-cart-link):nth-child(-n+2) { display: none; }
-
-  .roma-hero { min-height: auto; }
-  .roma-hero-inner { min-height: auto; padding: 56px 0 26px; gap: 8px; }
-  .roma-kicker { font-size: 11px; margin-bottom: 7px; }
-  .roma-hero-copy h1 { font-size: clamp(3rem, 14vw, 4.2rem); line-height: .95; }
-  .roma-hero-copy p { margin-top: 12px; font-size: 13px; line-height: 1.75; }
-  .roma-primary-btn, .roma-secondary-btn { min-height: 41px; padding: 0 18px; font-size: 12px; }
-  .roma-hero-plate { min-height: 360px; }
-  .roma-hero-plate-main { width: min(330px, 84vw); border-width: 8px; }
-  .roma-floating-card-one { width: 92px; height: 92px; left: -18px; top: 38px; }
-  .roma-floating-card-two { width: 70px; height: 70px; right: -8px; bottom: 48px; }
-  .roma-floating-cola { width: 54px; height: 94px; left: 10px; bottom: 34px; font-size: 8px; }
-  .roma-floating-fries { width: 78px; height: 78px; right: -5px; top: 28px; font-size: 8px; }
-
-  .roma-feature-grid { min-height: 96px; grid-template-columns: repeat(4, minmax(105px, 1fr)); overflow-x: auto; scrollbar-width: none; }
-  .roma-feature-grid::-webkit-scrollbar { display: none; }
-  .roma-feature-item { min-width: 105px; gap: 8px; padding: 14px 8px; }
-  .roma-feature-item strong { font-size: 15px; }
-  .roma-feature-item span { font-size: 10px; }
-
-  .roma-section { padding: 58px 0; }
-  .roma-section-heading { margin-bottom: 26px; }
-  .roma-section-kicker { font-size: 11px; }
-  .roma-section-heading h2 { font-size: 2.75rem; }
-  .roma-section-heading p { margin-top: 10px; font-size: 13px; }
-  .roma-best-grid { grid-template-columns: 1fr; gap: 14px; }
+  .roma-header-inner { min-height: 64px; gap: 10px; }
+  .roma-brand-copy { display: none; }
+  .roma-brand-mark { width: 42px; height: 42px; font-size: 14px; }
+  .roma-order-button { min-height: 40px; padding: 0 14px; font-size: 11px; }
+  .roma-icon-link { display: none; }
+  .roma-hero-grid { padding: 48px 0 34px; gap: 18px; }
+  .roma-kicker { font-size: 11px; }
+  .roma-hero-copy h1 { font-size: clamp(2.8rem, 13vw, 4.2rem); }
+  .roma-hero-copy p { font-size: 13px; line-height: 1.75; }
+  .roma-primary-cta,
+  .roma-secondary-cta { min-height: 42px; padding: 0 16px; font-size: 11px; }
+  .roma-hero-meta { gap: 10px; font-size: 11px; }
+  .roma-hero-showcase { min-height: 330px; }
+  .roma-hero-main-plate { width: min(310px, 82vw); border-width: 8px; }
+  .roma-hero-orbit-one { width: 92px; height: 92px; left: 0; top: 28px; }
+  .roma-hero-orbit-two { width: 72px; height: 72px; right: 2px; bottom: 36px; }
+  .roma-hero-badge { left: 8px; bottom: 18px; min-width: 108px; padding: 9px 10px; }
+  .roma-trust-grid { grid-template-columns: repeat(2, 1fr); min-height: auto; }
+  .roma-trust-grid > div { min-height: 92px; padding: 12px 8px; gap: 8px; }
+  .roma-trust-grid strong { font-size: 15px; }
+  .roma-section { padding: 56px 0; }
+  .roma-section-head { align-items: center; text-align: center; flex-direction: column; margin-bottom: 26px; }
+  .roma-section-head h2,
+  .roma-story-copy h2,
+  .roma-cta-content h2 { font-size: clamp(2.4rem, 11vw, 3.6rem); }
+  .roma-product-grid { grid-template-columns: 1fr; gap: 14px; }
   .roma-product-image { height: 230px; }
-  .roma-product-body h3 { font-size: 23px; }
-
-  .roma-story { padding: 64px 0; }
-  .roma-story-inner { gap: 28px; }
-  .roma-story-image { min-height: 320px; border-radius: 22px; }
-  .roma-story-copy h2 { font-size: 3.2rem; }
-  .roma-story-copy p { font-size: 14px; line-height: 1.85; }
-
-  .roma-gallery-grid { grid-template-columns: 1fr; grid-template-rows: repeat(4, 230px); gap: 12px; }
-  .roma-gallery-item:first-child,
-  .roma-gallery-item:nth-child(4) { grid-column: auto; }
-
-  .roma-cta { padding: 72px 0; }
-  .roma-cta-copy { text-align: center; }
-  .roma-cta-copy h2 { font-size: 3.5rem; }
-  .roma-cta-copy p { font-size: 14px; }
-  .roma-cta-actions { justify-content: center; }
-
-  .roma-footer { padding: 38px 0 16px; }
-  .roma-footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 16px; }
+  .roma-product-body h3 { font-size: 22px; }
+  .roma-story { padding: 58px 0; }
+  .roma-story-grid { gap: 30px; }
+  .roma-story-visual { min-height: 360px; }
+  .roma-story-image-main { width: 86%; height: 310px; }
+  .roma-story-image-small { width: 42%; height: 170px; }
+  .roma-story-seal { width: 88px; height: 88px; font-size: 14px; left: 20%; }
+  .roma-story-copy p { font-size: 13px; }
+  .roma-gallery-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 150px; gap: 8px; }
+  .roma-gallery-wide { grid-column: span 2; }
+  .roma-cta { min-height: 420px; padding: 50px 0; }
+  .roma-cta-content p { font-size: 13px; }
+  .roma-footer { padding: 42px 0 16px; }
+  .roma-footer-grid { grid-template-columns: repeat(2, 1fr); gap: 26px 16px; }
   .roma-footer-grid > div:first-child { grid-column: 1 / -1; text-align: center; }
-  .roma-footer h3 { font-size: 25px; }
-  .roma-footer h4 { font-size: 14px; }
-  .roma-footer p, .roma-footer a { margin-top: 7px; font-size: 12px; line-height: 1.65; }
-  .roma-copyright { margin-top: 24px; font-size: 11px; }
+  .roma-brand-footer { justify-content: center; }
+  .roma-footer > .roma-container > div:first-child p { margin-inline: auto; }
 }
