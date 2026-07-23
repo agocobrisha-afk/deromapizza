@@ -167,20 +167,20 @@ export default async function PizzaHubLanding() {
 
         <section id="gallery" className="roma-section roma-gallery">
           <div className="roma-container">
-            <div className="roma-section-head roma-section-head-centered"><div><span>من أجوائنا</span><h2>كل صورة تحكي طعمًا</h2></div></div>
-            <div className="roma-gallery-grid">
-              <div className="roma-gallery-item roma-gallery-wide" style={{ backgroundImage: `url(${imageAt(0)})` }} />
-              <div className="roma-gallery-item roma-gallery-tall" style={{ backgroundImage: `url(${imageAt(1)})` }} />
-              <div className="roma-gallery-item" style={{ backgroundImage: `url(${imageAt(2)})` }} />
-              <div className="roma-gallery-item" style={{ backgroundImage: `url(${imageAt(3)})` }} />
-              <div className="roma-gallery-item roma-gallery-tall" style={{ backgroundImage: `url(${imageAt(4)})` }} />
-              <div className="roma-gallery-item" style={{ backgroundImage: `url(${imageAt(5)})` }} />
+            <div className="roma-section-head roma-section-head-centered"><div><span>من أجوائنا</span><h2>كل صورة تحكي طعمًا</h2><p>تناسق بصري أوضح وصور مرتبة بأحجام محسوبة بدون فراغات مزعجة.</p></div></div>
+            <div className="roma-gallery-grid roma-gallery-balanced">
+              <div className="roma-gallery-item roma-gallery-featured" style={{ backgroundImage: `url(${imageAt(0)})` }}><span>بيتزا طازجة من الفرن</span></div>
+              <div className="roma-gallery-item" style={{ backgroundImage: `url(${imageAt(1)})` }}><span>وصفات إيطالية</span></div>
+              <div className="roma-gallery-item" style={{ backgroundImage: `url(${imageAt(2)})` }}><span>مكونات مختارة</span></div>
+              <div className="roma-gallery-item" style={{ backgroundImage: `url(${imageAt(3)})` }}><span>أجواء المطعم</span></div>
+              <div className="roma-gallery-item" style={{ backgroundImage: `url(${imageAt(4)})` }}><span>طلبات عائلية</span></div>
+              <div className="roma-gallery-item roma-gallery-wide" style={{ backgroundImage: `url(${imageAt(5)})` }}><span>طعم يستحق التكرار</span></div>
             </div>
           </div>
         </section>
 
         <section className="roma-section roma-testimonials">
-          <div className="roma-container">
+          <div className="roma-container roma-testimonials-wrap">
             <div className="roma-section-head roma-section-head-centered"><div><span>آراء العملاء</span><h2>تجربة يحبوا يرجعوا لها</h2></div></div>
             <div className="roma-review-summary">
               <div><Star size={22} fill="currentColor" /><strong>4.9</strong><span>من 5</span></div>
@@ -212,22 +212,17 @@ export default async function PizzaHubLanding() {
         <div className="roma-container roma-footer-top">
           <div className="roma-footer-brand-block">
             <Link href="/" className="roma-brand roma-brand-footer"><span className="roma-brand-mark">DR</span><span className="roma-brand-copy"><strong>{settings.restaurant_name}</strong><small>Italian Pizza & Pastry</small></span></Link>
-            <p>{settings.tagline}</p>
+            <p>{settings.tagline || "بيتزا إيطالية بطابع محلي، عجينة يومية، وخدمة توصيل داخل طرابلس."}</p>
             <div className="roma-footer-socials"><a href="#">Instagram</a><a href="#">Facebook</a><a href={`https://wa.me/${settings.whatsapp}`}>WhatsApp</a></div>
           </div>
           <div className="roma-footer-grid">
             <div><h4>روابط سريعة</h4><a href="#home">الرئيسية</a><a href="#bestsellers">الأكثر طلبًا</a><a href="#story">قصتنا</a><a href="#gallery">المعرض</a></div>
-            <div><h4>ساعات العمل</h4><p>{settings.hours}</p><p>خدمة الطلب يوميًا</p></div>
-            <div><h4>تواصل معنا</h4><p>{settings.phone}</p><p>{settings.address}</p></div>
+            <div><h4>ساعات العمل</h4><p>{settings.hours || "يوميًا من 1:00 ظهرًا حتى 1:00 صباحًا"}</p><p>تحضير يومي</p><p>توصيل داخل طرابلس</p></div>
+            <div><h4>تواصل معنا</h4><p>{settings.phone}</p><p>{settings.address}</p><Link href="/menu">اطلب من المنيو</Link></div>
           </div>
-          <div className="roma-footer-newsletter">
-            <span>كن أول من يعرف عروضنا</span>
-            <h4>أحدث العروض مباشرة</h4>
-            <p>سجل بريدك أو رقمك للحصول على العروض الجديدة.</p>
-            <form><input type="email" placeholder="البريد الإلكتروني" aria-label="البريد الإلكتروني" /><button type="submit">اشتراك</button></form>
-          </div>
+          <div className="roma-footer-newsletter"><span>عروض De Roma</span><h4>خليك أول واحد يعرف</h4><p>سجل بريدك للحصول على العروض والخصومات الجديدة.</p><form><input type="email" placeholder="البريد الإلكتروني" aria-label="البريد الإلكتروني" /><button type="submit">اشترك</button></form></div>
         </div>
-        <div className="roma-footer-bottom">© {new Date().getFullYear()} {settings.restaurant_name}. جميع الحقوق محفوظة.</div>
+        <div className="roma-container roma-footer-bottom">© {new Date().getFullYear()} {settings.restaurant_name}. جميع الحقوق محفوظة.</div>
       </footer>
     </div>
   );
