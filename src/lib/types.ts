@@ -5,6 +5,21 @@ export type SiteSettings = {
   logo_url: string | null;
   hero_image_url: string | null;
   primary_color: string;
+  secondary_color?: string;
+  accent_color?: string;
+  background_color?: string;
+  surface_color?: string;
+  text_color?: string;
+  muted_text_color?: string;
+  font_body?: string;
+  font_display?: string;
+  base_font_size?: number;
+  heading_scale?: number;
+  border_radius?: number;
+  shadow_strength?: number;
+  header_style?: "solid" | "glass" | "transparent";
+  hero_style?: "editorial" | "split" | "minimal";
+  card_style?: "soft" | "bordered" | "flat";
   phone: string;
   whatsapp: string;
   address: string;
@@ -20,6 +35,10 @@ export type SiteSettings = {
   about_body: string;
   cta_primary_label: string;
   cta_secondary_label: string;
+  gallery_title?: string;
+  gallery_subtitle?: string;
+  gallery_images?: string[];
+  footer_text?: string;
 };
 
 export type Category = {

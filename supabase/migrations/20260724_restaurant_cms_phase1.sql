@@ -1,0 +1,40 @@
+alter table if exists public.site_settings
+  add column if not exists secondary_color text default '#171717',
+  add column if not exists accent_color text default '#F6B94A',
+  add column if not exists background_color text default '#FFFDFB',
+  add column if not exists surface_color text default '#FFFFFF',
+  add column if not exists text_color text default '#171717',
+  add column if not exists muted_text_color text default '#746C68',
+  add column if not exists font_body text default 'cairo',
+  add column if not exists font_display text default 'changa',
+  add column if not exists base_font_size integer default 16,
+  add column if not exists heading_scale numeric default 1,
+  add column if not exists border_radius integer default 24,
+  add column if not exists shadow_strength numeric default 0.22,
+  add column if not exists header_style text default 'glass',
+  add column if not exists hero_style text default 'editorial',
+  add column if not exists card_style text default 'soft',
+  add column if not exists gallery_title text default 'كل صورة تحكي طعمًا',
+  add column if not exists gallery_subtitle text default 'صور مرتبة ومتناسقة تعرض الأكل والأجواء بدون ازدحام أو أحجام عشوائية.',
+  add column if not exists gallery_images jsonb default '[]'::jsonb,
+  add column if not exists footer_text text default 'بيتزا إيطالية بطابع محلي، عجينة يومية، وخدمة توصيل داخل طرابلس.';
+
+update public.site_settings
+set
+  secondary_color = coalesce(secondary_color, '#171717'),
+  accent_color = coalesce(accent_color, '#F6B94A'),
+  background_color = coalesce(background_color, '#FFFDFB'),
+  surface_color = coalesce(surface_color, '#FFFFFF'),
+  text_color = coalesce(text_color, '#171717'),
+  muted_text_color = coalesce(muted_text_color, '#746C68'),
+  font_body = coalesce(font_body, 'cairo'),
+  font_display = coalesce(font_display, 'changa'),
+  base_font_size = coalesce(base_font_size, 16),
+  heading_scale = coalesce(heading_scale, 1),
+  border_radius = coalesce(border_radius, 24),
+  shadow_strength = coalesce(shadow_strength, 0.22),
+  header_style = coalesce(header_style, 'glass'),
+  hero_style = coalesce(hero_style, 'editorial'),
+  card_style = coalesce(card_style, 'soft'),
+  gallery_images = coalesce(gallery_images, '[]'::jsonb)
+where id = 1;
