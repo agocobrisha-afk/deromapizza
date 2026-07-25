@@ -17,6 +17,7 @@ import {
   X,
   ArrowLeft,
   Sparkles,
+  ChevronLeft,
 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import type { Session } from "@supabase/supabase-js";
@@ -89,32 +90,35 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
   if (!session) return null;
 
   const sidebar = (
-    <aside className="flex h-full w-[280px] flex-col bg-[#0f172a] text-white">
+    <aside className="flex h-full w-[288px] flex-col bg-[#0f172a] text-white">
       <div className="border-b border-white/10 p-5">
         <div className="flex items-center justify-between gap-3">
           <div>
-            <p className="text-[11px] font-black tracking-[0.16em] text-rose-300">RESTAURANT CMS</p>
+            <p className="text-[11px] font-black tracking-[0.18em] text-rose-300">RESTAURANT CMS</p>
             <h1 className="mt-1 text-xl font-black">De Roma</h1>
             <p className="mt-1 text-xs text-slate-400">لوحة إدارة جديدة من الصفر</p>
           </div>
-          <span className="grid h-11 w-11 place-items-center rounded-2xl bg-rose-500 text-sm font-black shadow-lg shadow-rose-950/30">DR</span>
+          <span className="grid h-12 w-12 place-items-center rounded-2xl bg-rose-500 text-sm font-black shadow-lg shadow-rose-950/30">DR</span>
         </div>
       </div>
 
       <nav className="flex-1 space-y-1 overflow-y-auto p-4">
         {navItems.map((item) => {
           const Icon = item.icon;
-          const active = pathname === item.href;
+          const active = pathname === item.href || (item.href !== "/admin" && pathname.startsWith(`${item.href}/`));
           return (
             <Link
               key={item.href}
               href={item.href}
-              className={`flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-bold transition ${
-                active ? "bg-rose-500 text-white" : "text-slate-300 hover:bg-white/10 hover:text-white"
+              className={`flex items-center justify-between rounded-2xl px-3 py-3 text-sm font-bold transition ${
+                active ? "bg-rose-500 text-white shadow-lg shadow-rose-950/25" : "text-slate-300 hover:bg-white/10 hover:text-white"
               }`}
             >
-              <Icon size={18} />
-              <span>{item.label}</span>
+              <span className="flex items-center gap-3">
+                <Icon size={18} />
+                <span>{item.label}</span>
+              </span>
+              <ChevronLeft size={16} className={active ? "opacity-100" : "opacity-35"} />
             </Link>
           );
         })}
@@ -140,7 +144,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
               <Sparkles size={14} /> لوحة الإدارة الجديدة
             </span>
             <h1 className="mt-4 text-3xl font-black leading-tight sm:text-4xl">إدارة المطعم والموقع من مكان واحد</h1>
-            <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">تم إيقاف محتوى الصفحة القديمة نهائيًا. هذه هي البداية الجديدة لإدارة الأصناف والتصنيفات والمحتوى والصور والمظهر.</p>
+            <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">هذه هي البداية الجديدة لإدارة الأصناف والتصنيفات والمحتوى والصور والمظهر بدون الرجوع لأي لوحة قديمة.</p>
           </div>
           <div className="grid grid-cols-2 gap-3 self-start">
             <article className="rounded-2xl border border-white/10 bg-white/5 p-4"><span className="text-xs text-slate-400">حالة اللوحة</span><strong className="mt-2 block text-lg font-black text-emerald-300">نشطة</strong></article>
@@ -153,6 +157,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
         <div>
           <span className="text-xs font-black text-rose-500">الإدارة الأساسية</span>
           <h2 className="mt-1 text-2xl font-black">اختر القسم الذي تريد إدارته</h2>
+          <p className="mt-2 text-sm leading-7 text-slate-500">كل قسم مستقل وواضح، وسيتم ربط وظائفه فعليًا خطوة بخطوة.</p>
         </div>
         <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {dashboardCards.map((item) => {
@@ -177,12 +182,12 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
 
       {mobileOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
-          <button type="button" aria-label="إغلاق القائمة" onClick={() => setMobileOpen(false)} className="absolute inset-0 bg-black/50" />
+          <button type="button" aria-label="إغلاق القائمة" onClick={() => setMobileOpen(false)} className="absolute inset-0 bg-black/50 backdrop-blur-[2px]" />
           <div className="absolute inset-y-0 right-0 shadow-2xl">{sidebar}</div>
         </div>
       )}
 
-      <div className="lg:pr-[280px]">
+      <div className="lg:pr-[288px]">
         <header className="sticky top-0 z-30 flex min-h-[74px] items-center justify-between border-b border-slate-200 bg-white/95 px-4 backdrop-blur sm:px-6 lg:px-8">
           <div className="flex items-center gap-3">
             <button type="button" onClick={() => setMobileOpen(true)} className="grid h-10 w-10 place-items-center rounded-xl border border-slate-200 bg-white text-slate-700 lg:hidden" aria-label="فتح القائمة">
