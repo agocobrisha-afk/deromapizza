@@ -3,8 +3,10 @@ name: Build
 on:
   pull_request:
     branches: [main]
-  push:
-    branches: [main, fix/resha-vercel-build]
+
+permissions:
+  contents: read
+  pull-requests: write
 
 jobs:
   build:
@@ -12,12 +14,36 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+        with:
+          show-progress: false
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
       - run: npm ci --silent
-      - run: npm run build --silent
+      - name: Build application
+        id: build
+        shell: bash
         env:
           NEXT_PUBLIC_SUPABASE_URL: https://placeholder.supabase.co
           NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: placeholder-public-key
+        run: |
+          set +e
+          npm run build --silent > build.log 2>&1
+          code=$?
+          if [ "$code" -ne 0 ]; then
+            echo "BUILD_FAILED=true" >> "$GITHUB_ENV"
+            exit 1
+          fi
+      - name: Comment build error
+        if: failure() && env.BUILD_FAILED == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          {
+            echo '## Build error'
+            echo '```text'
+            tail -n 80 build.log
+            echo '```'
+          } > comment.md
+          gh pr comment ${{ github.event.pull_request.number }} --body-file comment.md
