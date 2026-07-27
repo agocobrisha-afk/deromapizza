@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cairo, Changa, Plus_Jakarta_Sans } from "next/font/google";
+import OrderFloatingButton from "@/components/OrderFloatingButton";
 import "./globals.css";
 import "./cart.css";
 
@@ -38,6 +39,7 @@ export default function RootLayout({
     <html lang="ar" dir="rtl">
       <body className={`${cairo.variable} ${changa.variable} ${jakarta.variable}`}>
         {children}
+        <OrderFloatingButton />
       </body>
     </html>
   );
